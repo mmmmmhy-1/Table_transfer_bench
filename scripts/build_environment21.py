@@ -92,7 +92,7 @@ def render(gold=False):
         w["G30"]=1
         for r in (29,30):
             for c in range(2,8):w.cell(r,c).number_format="0%"
-    note_row=32 if gold else 29
+    if gold:\n        w["G30"].number_format="0%"\n    note_row=32 if gold else 29
     w.merge_cells(start_row=note_row,start_column=1,end_row=note_row,end_column=7 if gold else 6)
     w.cell(note_row,1,FOOTNOTE)
     w.cell(note_row,1).alignment=Alignment(wrap_text=True)
