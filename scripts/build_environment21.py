@@ -102,6 +102,8 @@ def render(gold=False):
     for row in w.iter_rows(min_row=6,max_row=r2010,min_col=2,max_col=7 if gold else 6):
         for cell in row:
             if isinstance(cell.value,int):cell.number_format='#,##0;[Red]-#,##0;"-"'
+    if gold:
+        w["G30"].number_format="0%"
     w.freeze_panes="B6"
     return wb
 
