@@ -1,0 +1,97 @@
+{
+  "benchmark": "Table Transformation Benchmark",
+  "benchmark_version": "2.1",
+  "case_id": "TTB_V2_1_RHB_environment21_OP2_OP3_001",
+  "source_family_id": "RealHiTBench_environment21",
+  "source_id": "RealHiTBench_environment21_Table5",
+  "source": {
+    "source_dataset": "RealHiTBench",
+    "source_instance": "environment21",
+    "source_filename": "environment-table21.html",
+    "source_title": "Table 5 Scientific procedures by species of animal and level of anaesthesia",
+    "source_url": "https://github.com/cspzyy/RealHiTBench",
+    "dataset_url": "https://huggingface.co/datasets/spzy/RealHiTBench",
+    "source_type": "real_benchmark_derived",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "modifications": [
+      "Reconstructed Excel with original two-level heading relationships",
+      "Removed Total column and three statistical rows for an agentic transformation task",
+      "Simplified workbook colors"
+    ],
+    "source_sha256": "f02ed2d34702b1e84739094b00f49023455a2d6601d74f1cd9c821ff22a2d607"
+  },
+  "primary_operation": "OP2",
+  "operations": [
+    "OP2",
+    "OP3"
+  ],
+  "operation_nodes": [
+    {
+      "id": "generate_total_column",
+      "operation": "OP2",
+      "subtype": "D1",
+      "target": "Total"
+    },
+    {
+      "id": "generate_three_statistical_rows",
+      "operation": "OP3",
+      "subtype": "G3",
+      "targets": [
+        "Increase on 2010",
+        "Percentage change from 2010",
+        "Percentage of total for 2011"
+      ]
+    }
+  ],
+  "dependency_edges": [
+    [
+      "generate_total_column",
+      "generate_three_statistical_rows"
+    ]
+  ],
+  "structure_tags": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "header_merges_input": [
+    "A4:A5",
+    "B4:B5",
+    "C4:F4"
+  ],
+  "header_merges_gold": [
+    "A4:A5",
+    "B4:B5",
+    "C4:F4",
+    "G4:G5"
+  ],
+  "input_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 29,
+    "used_columns": 6,
+    "animal_detail_rows": 19,
+    "anaesthesia_count": 5
+  },
+  "gold_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 32,
+    "used_columns": 7
+  },
+  "rules": {
+    "dash_policy": "Treat '-' as 0 only for arithmetic; preserve original cells",
+    "percentage_change": "(2011-2010)/abs(2010)",
+    "percentage_share": "2011 column total / 2011 grand total",
+    "percentage_display": "0%",
+    "preserve_mammal_primate": true
+  },
+  "split": "example",
+  "dataset_status": "public_example_gold_verified_locally",
+  "evaluation": {
+    "primary_metric": "Hard Task Success",
+    "reference_gold_success": 1,
+    "mutated_gold_success": 0
+  },
+  "publication_policy": "Example with public gold; never held-out test"
+}
