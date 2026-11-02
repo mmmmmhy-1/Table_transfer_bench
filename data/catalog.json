@@ -1,0 +1,27 @@
+{
+  "format_version": "1.0",
+  "benchmark": "Table Transformation Benchmark",
+  "benchmark_version": "2.1",
+  "cases": [
+    {
+      "case_id": "TTB_V2_1_RHB_environment21_OP2_OP3_001",
+      "domain": "environment",
+      "source_dataset": "RealHiTBench",
+      "source_table_id": "environment21",
+      "source_family_id": "RealHiTBench_environment21",
+      "operations": [
+        "OP2",
+        "OP3"
+      ],
+      "structure_tags": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "split": "example",
+      "release_role": "public_demo",
+      "path": "data/environment/realhitbench/environment21/cases/op2_op3_total_statistics"
+    }
+  ]
+}

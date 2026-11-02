@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/build_environment21.py'
-      - 'examples/realhitbench_environment21/evaluate.py'
+      - 'data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py'
       - '.github/workflows/example-check.yml'
   workflow_dispatch:
 
@@ -24,13 +24,13 @@ jobs:
       - name: Generate Excel input and gold
         run: python scripts/build_environment21.py
       - name: Verify gold result
-        run: python examples/realhitbench_environment21/evaluate.py examples/realhitbench_environment21/gold_output.xlsx
+        run: python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_output.xlsx
       - name: Commit generated XLSX artifacts if changed
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add examples/realhitbench_environment21/input.xlsx examples/realhitbench_environment21/gold_output.xlsx examples/realhitbench_environment21/gold_canonical.json
+          git add data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/input.xlsx data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_output.xlsx data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_canonical.json
           if ! git diff --cached --quiet; then
             git commit -m "data: publish regenerated RealHiTBench environment21 example"
             git push

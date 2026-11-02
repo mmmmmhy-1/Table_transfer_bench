@@ -11,16 +11,20 @@ This case is part of the research-preview **Table Transformation Benchmark V2.1*
 - Preserve the original 2011 `Total` and `2010 Totals` rows, the Mammal/Primate hierarchy, footnote, and existing counts.
 - **Critical header relation:** `No anaesthesia` is independent; only four later columns are beneath `Type of anaesthesia`.
 
+## Domain and provenance
+
+This case is classified under **environment** (domain), **RealHiTBench** (source), **environment21** (source table family), and **OP2 + OP3** (task operations). Other data sources from the same domain belong in adjacent sibling source directories rather than inside `realhitbench`.
+
 ## Files and reproduction
 
 `metadata.json` provides source attribution, operation taxonomy and structure annotations. `instruction.txt` is the English agent-facing instruction. `evaluate.py` checks a completed workbook.
 
-The repository includes the self-contained workbook generator `scripts/build_environment21.py`. If XLSX assets are not yet present in GitHub, generate them locally:
+The repository includes the self-contained workbook generator `scripts/build_environment21.py`. The XLSX assets are also checked into this public example folder. To regenerate and validate:
 
 ```bash
 python -m pip install -r requirements.txt
 python scripts/build_environment21.py
-python examples/realhitbench_environment21/evaluate.py examples/realhitbench_environment21/gold_output.xlsx
+python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_output.xlsx
 ```
 
 This produces `input.xlsx`, `gold_output.xlsx` and `gold_canonical.json`. The workflow `.github/workflows/example-check.yml` also attempts to publish verified generated assets; repository Actions permissions may need to permit workflow execution and writing contents.

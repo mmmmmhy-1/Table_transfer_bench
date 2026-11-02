@@ -19,16 +19,39 @@ This repository develops a benchmark for **instruction-driven XLSX transformatio
 
 We annotate table structure separately (**S0** flat, **S1** multi-level column headers, **S2** hierarchical row headers, **S3** merged cells, **S4** irregular layouts). Scale is measured continuously, not assigned fixed Small/Medium bins. Compositions and their dependencies are explicitly recorded.
 
+## Dataset organization
+
+Data are grouped **first by domain**, then by **source dataset**, then by **source table / source family**, and finally by individual transformation case:
+
+```text
+data/
+  <domain>/
+    <source_dataset>/
+      <source_table_id>/
+        cases/<task_id>/
+          input.xlsx
+          instruction.txt
+          metadata.json
+          gold_output.xlsx
+          gold_canonical.json
+          evaluate.py
+          README.md
+```
+
+For example, the present case belongs to the **environment** domain and comes from **RealHiTBench**. Future environment cases may come from entirely different datasets; other domains (finance, industry, science, etc.) use the same layout. See [dataset organization](data/README.md) and [machine-readable catalog](data/catalog.json).
+
+Domain, source and atomic operation labels are **independent attributes**; do not create separate copies of the same task under OP2 and OP3.
+
 ## Public case
 
-[RealHiTBench environment21 — OP2 + OP3](examples/realhitbench_environment21/README.md)
+[Environment / RealHiTBench / environment21 — OP2 + OP3](data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/README.md)
 
 Input: animal scientific procedures by anaesthesia type, Great Britain 2011. The task restores the **Total column** and **three comparison rows**, while retaining the original two-level anaesthesia header, animal categories (including Mammal/Primate), and two annual total rows.
 
 ```bash
 python -m pip install -r requirements.txt
-python examples/realhitbench_environment21/evaluate.py examples/realhitbench_environment21/gold_output.xlsx
-python examples/realhitbench_environment21/evaluate.py /path/to/submission.xlsx
+python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_output.xlsx
+python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py /path/to/submission.xlsx
 ```
 
 Only expose `input.xlsx` and `instruction.txt` to an agent. Gold and reference code must be held back at execution time. The public example is intended for reproducibility, **never for an unseen-test score**.

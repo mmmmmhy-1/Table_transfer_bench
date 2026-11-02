@@ -19,7 +19,8 @@
       "Removed Total column and three statistical rows for an agentic transformation task",
       "Simplified workbook colors"
     ],
-    "source_sha256": "f02ed2d34702b1e84739094b00f49023455a2d6601d74f1cd9c821ff22a2d607"
+    "source_sha256": "f02ed2d34702b1e84739094b00f49023455a2d6601d74f1cd9c821ff22a2d607",
+    "source_domain": "environment"
   },
   "primary_operation": "OP2",
   "operations": [
@@ -93,5 +94,16 @@
     "reference_gold_success": 1,
     "mutated_gold_success": 0
   },
-  "publication_policy": "Example with public gold; never held-out test"
+  "publication_policy": "Example with public gold; never held-out test",
+  "domain": "environment",
+  "category": "environment",
+  "category_path": "data/environment",
+  "case_relative_path": "data/environment/realhitbench/environment21/cases/op2_op3_total_statistics",
+  "release_role": "public_demo",
+  "taxonomy": {
+    "domain": "environment",
+    "source_dataset": "RealHiTBench",
+    "source_table_id": "environment21",
+    "task_id": "op2_op3_total_statistics"
+  }
 }
