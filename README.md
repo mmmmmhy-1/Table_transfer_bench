@@ -21,37 +21,39 @@ We annotate table structure separately (**S0** flat, **S1** multi-level column h
 
 ## Dataset organization
 
-Data are grouped **first by domain**, then by **source dataset**, then by **source table / source family**, and finally by individual transformation case:
+The dataset is organized by **subject domain** and a **unique numbered case folder**. Dataset names such as RealHiTBench are **provenance**, not directory categories; the source, original table ID, operation labels, and source-family grouping live in `metadata.json` and the central [catalog](data/catalog.json).
 
 ```text
 data/
-  <domain>/
-    <source_dataset>/
-      <source_table_id>/
-        cases/<task_id>/
-          input.xlsx
-          instruction.txt
-          metadata.json
-          gold_output.xlsx
-          gold_canonical.json
-          evaluate.py
-          README.md
+  catalog.json
+  environment/
+    case_1_realhitbench/
+      input.xlsx
+      instruction.txt
+      metadata.json
+      gold_output.xlsx
+      gold_canonical.json
+      evaluate.py
+      README.md
+    case_2_<other-source>/ ...
+  finance/
+    case_.../
+  industry/
+    case_.../
 ```
 
-For example, the present case belongs to the **environment** domain and comes from **RealHiTBench**. Future environment cases may come from entirely different datasets; other domains (finance, industry, science, etc.) use the same layout. See [dataset organization](data/README.md) and [machine-readable catalog](data/catalog.json).
-
-Domain, source and atomic operation labels are **independent attributes**; do not create separate copies of the same task under OP2 and OP3.
+Case names use a stable case number plus a short source suffix for human readability. The suffix is only a filename hint: **domain** and **operations** are independent metadata fields, and cases from one original table share a `source_family_id` so they cannot cross evaluation splits. See [dataset conventions](data/README.md).
 
 ## Public case
 
-[Environment / RealHiTBench / environment21 — OP2 + OP3](data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/README.md)
+[Environment / case_1_realhitbench — OP2 + OP3](data/environment/case_1_realhitbench/README.md)
 
 Input: animal scientific procedures by anaesthesia type, Great Britain 2011. The task restores the **Total column** and **three comparison rows**, while retaining the original two-level anaesthesia header, animal categories (including Mammal/Primate), and two annual total rows.
 
 ```bash
 python -m pip install -r requirements.txt
-python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/gold_output.xlsx
-python data/environment/realhitbench/environment21/cases/op2_op3_total_statistics/evaluate.py /path/to/submission.xlsx
+python data/environment/case_1_realhitbench/evaluate.py data/environment/case_1_realhitbench/gold_output.xlsx
+python data/environment/case_1_realhitbench/evaluate.py /path/to/submission.xlsx
 ```
 
 Only expose `input.xlsx` and `instruction.txt` to an agent. Gold and reference code must be held back at execution time. The public example is intended for reproducibility, **never for an unseen-test score**.

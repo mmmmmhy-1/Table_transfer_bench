@@ -21,7 +21,9 @@
       ],
       "split": "example",
       "release_role": "public_demo",
-      "path": "data/environment/realhitbench/environment21/cases/op2_op3_total_statistics"
+      "path": "data/environment/case_1_realhitbench",
+      "case_number": 1,
+      "case_slug": "case_1_realhitbench"
     }
   ]
 }

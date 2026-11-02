@@ -8,7 +8,7 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import PatternFill, Font, Alignment
 from openpyxl.utils import get_column_letter
 
-HERE = Path(__file__).resolve().parents[1] / "data" / "environment" / "realhitbench" / "environment21" / "cases" / "op2_op3_total_statistics"
+HERE = Path(__file__).resolve().parents[1] / "data" / "environment" / "case_1_realhitbench"
 DATA = [
 ("Mammal",None,None,None,None,None),
 ("Mouse",1984204,396591,144433,106142,48393),
