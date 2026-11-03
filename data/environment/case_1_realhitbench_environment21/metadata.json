@@ -99,7 +99,7 @@
   "domain": "environment",
   "category": "environment",
   "category_path": "data/environment",
-  "case_relative_path": "data/environment/case_1_realhitbench",
+  "case_relative_path": "data/environment/case_1_realhitbench_environment21",
   "release_role": "public_demo",
   "taxonomy": {
     "domain": "environment",
@@ -115,5 +115,5 @@
     ]
   },
   "case_number": 1,
-  "case_slug": "case_1_realhitbench"
+  "case_slug": "case_1_realhitbench_environment21"
 }

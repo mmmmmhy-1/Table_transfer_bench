@@ -1,0 +1,860 @@
+{
+  "sheet_name": "Labor Transformation",
+  "columns": [
+    "Company",
+    "Company Employee Count",
+    "Name",
+    "Employee Skill Count",
+    "Skill",
+    "Area"
+  ],
+  "used_rows": 53,
+  "used_columns": 6,
+  "data_rows": 52,
+  "employee_count": 42,
+  "company_count": 11,
+  "skill_occurrences": 48,
+  "area_occurrences": 48,
+  "cells": {
+    "A1": "Company",
+    "B1": "Company Employee Count",
+    "C1": "Name",
+    "D1": "Employee Skill Count",
+    "E1": "Skill",
+    "F1": "Area",
+    "A2": "Hak Gas",
+    "B2": 3,
+    "C2": "demo name 1",
+    "D2": 1,
+    "E2": "Gas engineer",
+    "F2": "Manchester",
+    "C3": "demo name 2",
+    "D3": 1,
+    "E3": "Intercom Specialist",
+    "F3": "Manchester",
+    "C4": "demo name 3",
+    "D4": 1,
+    "E4": "Plasterer",
+    "F4": "Burnley",
+    "A5": "Pipe Wise",
+    "B5": 2,
+    "C5": "demo name 4",
+    "D5": 1,
+    "E5": "Plumber",
+    "F5": "Manchester",
+    "C6": "demo name 5",
+    "D6": 1,
+    "E6": "electrician",
+    "F6": "Burnley",
+    "A7": "Plumb It Right",
+    "B7": 1,
+    "C7": "demo name 6",
+    "D7": 2,
+    "E7": "Gas engineer",
+    "F7": "Manchester",
+    "E8": "plumber",
+    "A9": "Pristine Carpets",
+    "B9": 8,
+    "C9": "demo name 7",
+    "D9": 1,
+    "E9": "Carpet fitter",
+    "F9": "Manchester",
+    "C10": "demo name 8",
+    "D10": 1,
+    "E10": "Roofer",
+    "F10": "Burnley",
+    "C11": "demo name 9",
+    "D11": 2,
+    "E11": "Gas engineer",
+    "F11": "Burnley",
+    "E12": "plumber",
+    "C13": "demo name 10",
+    "D13": 1,
+    "E13": "General",
+    "F13": "Burnley",
+    "F14": "Manchester",
+    "C15": "demo name 11",
+    "D15": 1,
+    "E15": "General",
+    "F15": "Burnley",
+    "C16": "demo name 12",
+    "D16": 1,
+    "E16": "Surveyor",
+    "F16": "Burnley",
+    "C17": "demo name 13",
+    "D17": 2,
+    "E17": "Roofer",
+    "F17": "Burnley",
+    "E18": "Builder",
+    "F18": "Manchester",
+    "C19": "demo name 14",
+    "D19": 2,
+    "E19": "Gas engineer",
+    "F19": "Burnley",
+    "E20": "plumber",
+    "F20": "Manchester",
+    "A21": "Cash & Carry",
+    "B21": 12,
+    "C21": "demo name 15",
+    "D21": 1,
+    "E21": "Carpet fitter",
+    "F21": "Burnley",
+    "C22": "demo name 16",
+    "D22": 1,
+    "E22": "Joiner",
+    "F22": "Manchester",
+    "C23": "demo name 17",
+    "D23": 1,
+    "E23": "Decorator",
+    "F23": "Manchester",
+    "C24": "demo name 18",
+    "D24": 1,
+    "E24": "Gardener",
+    "F24": "Manchester",
+    "C25": "demo name 19",
+    "D25": 1,
+    "E25": "Surveyor",
+    "F25": "Manchester",
+    "C26": "demo name 20",
+    "D26": 1,
+    "E26": "Decorator",
+    "F26": "Manchester",
+    "C27": "demo name 21",
+    "D27": 2,
+    "E27": "Builder",
+    "F27": "Manchester",
+    "E28": "Roofer",
+    "F28": "Burnley",
+    "C29": "demo name 22",
+    "D29": 1,
+    "E29": "decorator",
+    "F29": "Burnley",
+    "C30": "demo name 23",
+    "D30": 1,
+    "E30": "Roofer",
+    "F30": "Manchester",
+    "C31": "demo name 24",
+    "D31": 1,
+    "E31": "Carpet cleaning",
+    "F31": "Manchester",
+    "C32": "demo name 25",
+    "D32": 1,
+    "E32": "electrician",
+    "F32": "Burnley",
+    "C33": "demo name 26",
+    "D33": 2,
+    "E33": "decorator",
+    "F33": "Burnley",
+    "E34": "Rubbish removal",
+    "A35": "Elite Carpets",
+    "B35": 2,
+    "C35": "demo name 27",
+    "D35": 1,
+    "E35": "Window fitter",
+    "F35": "Burnley",
+    "C36": "demo name 28",
+    "D36": 1,
+    "E36": "carpet cleaning",
+    "F36": "Burnley",
+    "A37": "Assured Advanced Access",
+    "B37": 3,
+    "C37": "demo name 29",
+    "D37": 1,
+    "E37": "Locksmith",
+    "F37": "Manchester",
+    "C38": "demo name 30",
+    "D38": 1,
+    "E38": "damp specialist",
+    "F38": "Burnley",
+    "C39": "demo name 31",
+    "D39": 1,
+    "E39": "Damp specialist",
+    "F39": "Manchester",
+    "A40": "Pini With A Van",
+    "B40": 6,
+    "C40": "demo name 32",
+    "D40": 1,
+    "E40": "Rubbish removal",
+    "F40": "Manchester",
+    "C41": "demo name 33",
+    "D41": 1,
+    "E41": "Joiner",
+    "C42": "demo name 34",
+    "D42": 1,
+    "E42": "electrician",
+    "F42": "Burnley",
+    "F43": "Manchester",
+    "C44": "demo name 35",
+    "D44": 1,
+    "E44": "roofer",
+    "F44": "Burnley",
+    "C45": "demo name 36",
+    "D45": 1,
+    "E45": "roofer",
+    "F45": "Burnley",
+    "C46": "demo name 37",
+    "D46": 1,
+    "E46": "Damp specialist",
+    "F46": "Manchester",
+    "F47": "Burnley",
+    "A48": "Stardrops",
+    "B48": 3,
+    "C48": "demo name 38",
+    "D48": 1,
+    "E48": "Cleaning",
+    "F48": "Manchester",
+    "C49": "demo name 39",
+    "D49": 1,
+    "E49": "electrician",
+    "F49": "Burnley",
+    "F50": "Manchester",
+    "C51": "demo name 40",
+    "D51": 1,
+    "E51": "general",
+    "F51": "Manchester",
+    "A52": "Bens Locksmith",
+    "B52": 1,
+    "C52": "demo name 41",
+    "D52": 1,
+    "E52": "Locksmith",
+    "F52": "Manchester",
+    "A53": "Lawrence & Carl (Royton)",
+    "B53": 1,
+    "C53": "demo name 42",
+    "D53": 1,
+    "E53": "Roofer",
+    "F53": "Manchester"
+  },
+  "merged_ranges": [
+    "A2:A4",
+    "A21:A34",
+    "A35:A36",
+    "A37:A39",
+    "A40:A47",
+    "A48:A51",
+    "A5:A6",
+    "A7:A8",
+    "A9:A20",
+    "B2:B4",
+    "B21:B34",
+    "B35:B36",
+    "B37:B39",
+    "B40:B47",
+    "B48:B51",
+    "B5:B6",
+    "B7:B8",
+    "B9:B20",
+    "C11:C12",
+    "C13:C14",
+    "C17:C18",
+    "C19:C20",
+    "C27:C28",
+    "C33:C34",
+    "C42:C43",
+    "C46:C47",
+    "C49:C50",
+    "C7:C8",
+    "D11:D12",
+    "D13:D14",
+    "D17:D18",
+    "D19:D20",
+    "D27:D28",
+    "D33:D34",
+    "D42:D43",
+    "D46:D47",
+    "D49:D50",
+    "D7:D8",
+    "E13:E14",
+    "E42:E43",
+    "E46:E47",
+    "E49:E50",
+    "F11:F12",
+    "F33:F34",
+    "F7:F8"
+  ],
+  "company_blocks": [
+    {
+      "company": "Hak Gas",
+      "start": 2,
+      "end": 4,
+      "count": 3
+    },
+    {
+      "company": "Pipe Wise",
+      "start": 5,
+      "end": 6,
+      "count": 2
+    },
+    {
+      "company": "Plumb It Right",
+      "start": 7,
+      "end": 8,
+      "count": 1
+    },
+    {
+      "company": "Pristine Carpets",
+      "start": 9,
+      "end": 20,
+      "count": 8
+    },
+    {
+      "company": "Cash & Carry",
+      "start": 21,
+      "end": 34,
+      "count": 12
+    },
+    {
+      "company": "Elite Carpets",
+      "start": 35,
+      "end": 36,
+      "count": 2
+    },
+    {
+      "company": "Assured Advanced Access",
+      "start": 37,
+      "end": 39,
+      "count": 3
+    },
+    {
+      "company": "Pini With A Van",
+      "start": 40,
+      "end": 47,
+      "count": 6
+    },
+    {
+      "company": "Stardrops",
+      "start": 48,
+      "end": 51,
+      "count": 3
+    },
+    {
+      "company": "Bens Locksmith",
+      "start": 52,
+      "end": 52,
+      "count": 1
+    },
+    {
+      "company": "Lawrence & Carl (Royton)",
+      "start": 53,
+      "end": 53,
+      "count": 1
+    }
+  ],
+  "employee_blocks": [
+    {
+      "company": "Hak Gas",
+      "name": "demo name 1",
+      "start": 2,
+      "end": 2,
+      "skills": [
+        "Gas engineer"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Hak Gas",
+      "name": "demo name 2",
+      "start": 3,
+      "end": 3,
+      "skills": [
+        "Intercom Specialist"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Hak Gas",
+      "name": "demo name 3",
+      "start": 4,
+      "end": 4,
+      "skills": [
+        "Plasterer"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pipe Wise",
+      "name": "demo name 4",
+      "start": 5,
+      "end": 5,
+      "skills": [
+        "Plumber"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pipe Wise",
+      "name": "demo name 5",
+      "start": 6,
+      "end": 6,
+      "skills": [
+        "electrician"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Plumb It Right",
+      "name": "demo name 6",
+      "start": 7,
+      "end": 8,
+      "skills": [
+        "Gas engineer",
+        "plumber"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 7",
+      "start": 9,
+      "end": 9,
+      "skills": [
+        "Carpet fitter"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 8",
+      "start": 10,
+      "end": 10,
+      "skills": [
+        "Roofer"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 9",
+      "start": 11,
+      "end": 12,
+      "skills": [
+        "Gas engineer",
+        "plumber"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 10",
+      "start": 13,
+      "end": 14,
+      "skills": [
+        "General"
+      ],
+      "areas": [
+        "Burnley",
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 11",
+      "start": 15,
+      "end": 15,
+      "skills": [
+        "General"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 12",
+      "start": 16,
+      "end": 16,
+      "skills": [
+        "Surveyor"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 13",
+      "start": 17,
+      "end": 18,
+      "skills": [
+        "Roofer",
+        "Builder"
+      ],
+      "areas": [
+        "Burnley",
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pristine Carpets",
+      "name": "demo name 14",
+      "start": 19,
+      "end": 20,
+      "skills": [
+        "Gas engineer",
+        "plumber"
+      ],
+      "areas": [
+        "Burnley",
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 15",
+      "start": 21,
+      "end": 21,
+      "skills": [
+        "Carpet fitter"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 16",
+      "start": 22,
+      "end": 22,
+      "skills": [
+        "Joiner"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 17",
+      "start": 23,
+      "end": 23,
+      "skills": [
+        "Decorator"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 18",
+      "start": 24,
+      "end": 24,
+      "skills": [
+        "Gardener"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 19",
+      "start": 25,
+      "end": 25,
+      "skills": [
+        "Surveyor"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 20",
+      "start": 26,
+      "end": 26,
+      "skills": [
+        "Decorator"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 21",
+      "start": 27,
+      "end": 28,
+      "skills": [
+        "Builder",
+        "Roofer"
+      ],
+      "areas": [
+        "Manchester",
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 22",
+      "start": 29,
+      "end": 29,
+      "skills": [
+        "decorator"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 23",
+      "start": 30,
+      "end": 30,
+      "skills": [
+        "Roofer"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 24",
+      "start": 31,
+      "end": 31,
+      "skills": [
+        "Carpet cleaning"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 25",
+      "start": 32,
+      "end": 32,
+      "skills": [
+        "electrician"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Cash & Carry",
+      "name": "demo name 26",
+      "start": 33,
+      "end": 34,
+      "skills": [
+        "decorator",
+        "Rubbish removal"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Elite Carpets",
+      "name": "demo name 27",
+      "start": 35,
+      "end": 35,
+      "skills": [
+        "Window fitter"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Elite Carpets",
+      "name": "demo name 28",
+      "start": 36,
+      "end": 36,
+      "skills": [
+        "carpet cleaning"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Assured Advanced Access",
+      "name": "demo name 29",
+      "start": 37,
+      "end": 37,
+      "skills": [
+        "Locksmith"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Assured Advanced Access",
+      "name": "demo name 30",
+      "start": 38,
+      "end": 38,
+      "skills": [
+        "damp specialist"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Assured Advanced Access",
+      "name": "demo name 31",
+      "start": 39,
+      "end": 39,
+      "skills": [
+        "Damp specialist"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 32",
+      "start": 40,
+      "end": 40,
+      "skills": [
+        "Rubbish removal"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 33",
+      "start": 41,
+      "end": 41,
+      "skills": [
+        "Joiner"
+      ],
+      "areas": []
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 34",
+      "start": 42,
+      "end": 43,
+      "skills": [
+        "electrician"
+      ],
+      "areas": [
+        "Burnley",
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 35",
+      "start": 44,
+      "end": 44,
+      "skills": [
+        "roofer"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 36",
+      "start": 45,
+      "end": 45,
+      "skills": [
+        "roofer"
+      ],
+      "areas": [
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Pini With A Van",
+      "name": "demo name 37",
+      "start": 46,
+      "end": 47,
+      "skills": [
+        "Damp specialist"
+      ],
+      "areas": [
+        "Manchester",
+        "Burnley"
+      ]
+    },
+    {
+      "company": "Stardrops",
+      "name": "demo name 38",
+      "start": 48,
+      "end": 48,
+      "skills": [
+        "Cleaning"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Stardrops",
+      "name": "demo name 39",
+      "start": 49,
+      "end": 50,
+      "skills": [
+        "electrician"
+      ],
+      "areas": [
+        "Burnley",
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Stardrops",
+      "name": "demo name 40",
+      "start": 51,
+      "end": 51,
+      "skills": [
+        "general"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Bens Locksmith",
+      "name": "demo name 41",
+      "start": 52,
+      "end": 52,
+      "skills": [
+        "Locksmith"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    },
+    {
+      "company": "Lawrence & Carl (Royton)",
+      "name": "demo name 42",
+      "start": 53,
+      "end": 53,
+      "skills": [
+        "Roofer"
+      ],
+      "areas": [
+        "Manchester"
+      ]
+    }
+  ]
+}

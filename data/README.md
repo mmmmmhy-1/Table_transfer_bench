@@ -8,7 +8,7 @@ data/
   catalog.json
   environment/
     README.md
-    case_1_realhitbench/
+    case_1_realhitbench_environment21/
       input.xlsx
       instruction.txt
       metadata.json
@@ -35,3 +35,5 @@ data/
 - **Index:** append each case to [catalog.json](catalog.json) with its domain, source, source family, operations, split and relative path.
 
 The current RealHiTBench-derived example is subject to **CC BY-NC 4.0**. Licensing must be checked per source dataset; the benchmark repository does not automatically own the underlying data.
+
+- Labor public review example: `data/labor/case_1_realhitbench_labor43/` (RealHiTBench labor43, OP1+OP2).

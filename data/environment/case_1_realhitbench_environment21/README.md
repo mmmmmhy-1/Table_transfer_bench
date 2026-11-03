@@ -13,7 +13,7 @@ This case is part of the research-preview **Table Transformation Benchmark V2.1*
 
 ## Domain and provenance
 
-This case is classified under **environment** (domain), **RealHiTBench** (source provenance), **environment21** (source table ID), and **OP2 + OP3** (task operations). The case is stored directly under `data/environment/case_1_realhitbench/`; RealHiTBench is not a taxonomy folder. Other sources use their own numbered case folders directly under `data/environment/`.
+This case is classified under **environment** (domain), **RealHiTBench** (source provenance), **environment21** (source table ID), and **OP2 + OP3** (task operations). The case is stored directly under `data/environment/case_1_realhitbench_environment21/`; RealHiTBench is not a taxonomy folder. Other sources use their own numbered case folders directly under `data/environment/`.
 
 ## Files and reproduction
 
@@ -24,7 +24,7 @@ The repository includes the self-contained workbook generator `scripts/build_env
 ```bash
 python -m pip install -r requirements.txt
 python scripts/build_environment21.py
-python data/environment/case_1_realhitbench/evaluate.py data/environment/case_1_realhitbench/gold_output.xlsx
+python data/environment/case_1_realhitbench_environment21/evaluate.py data/environment/case_1_realhitbench_environment21/gold_output.xlsx
 ```
 
 This produces `input.xlsx`, `gold_output.xlsx` and `gold_canonical.json`. The workflow `.github/workflows/example-check.yml` also attempts to publish verified generated assets; repository Actions permissions may need to permit workflow execution and writing contents.

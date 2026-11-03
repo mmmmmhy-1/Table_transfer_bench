@@ -1,0 +1,135 @@
+{
+  "benchmark": "Table Transformation Benchmark",
+  "benchmark_version": "2.1",
+  "case_id": "TTB_V2_1_RHB_labor43_OP1_OP2_001",
+  "case_number": 1,
+  "case_slug": "case_1_realhitbench_labor43",
+  "case_relative_path": "data/labor/case_1_realhitbench_labor43",
+  "domain": "labor",
+  "category": "labor",
+  "category_path": "data/labor",
+  "source_family_id": "RealHiTBench_labor43",
+  "source_id": "RealHiTBench_labor43",
+  "source": {
+    "source_dataset": "RealHiTBench",
+    "source_instance": "labor43",
+    "source_table_id": "labor43",
+    "source_filename": "labor-table43.html",
+    "source_title": "Labor workforce, companies, skills and areas",
+    "source_url": "https://github.com/cspzyy/RealHiTBench",
+    "dataset_url": "https://huggingface.co/datasets/spzy/RealHiTBench",
+    "source_type": "real_benchmark_derived",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "source_domain": "labor",
+    "modifications": [
+      "Reconstructed original six-column workbook from source HTML, preserving eight Company merge ranges",
+      "Independently expanded Skill and Area lists without inventing a Skill-Area pairing",
+      "Merged company, name and singleton skills/areas for grouped presentation",
+      "Derived Company Employee Count and Employee Skill Count"
+    ]
+  },
+  "primary_operation": "OP1",
+  "operations": [
+    "OP1",
+    "OP2"
+  ],
+  "operation_nodes": [
+    {
+      "id": "reshape_skill_area",
+      "operation": "OP1",
+      "subtype": "R3",
+      "target": "Grouped long form of Skill and Area"
+    },
+    {
+      "id": "derive_company_count",
+      "operation": "OP2",
+      "subtype": "D4",
+      "target": "Company Employee Count"
+    },
+    {
+      "id": "derive_employee_skill_count",
+      "operation": "OP2",
+      "subtype": "D1",
+      "target": "Employee Skill Count"
+    }
+  ],
+  "dependency_edges": [
+    [
+      "reshape_skill_area",
+      "derive_company_count"
+    ],
+    [
+      "reshape_skill_area",
+      "derive_employee_skill_count"
+    ]
+  ],
+  "structure_tags": [
+    "S2",
+    "S3"
+  ],
+  "difficulty": "L3",
+  "split": "example",
+  "release_role": "public_demo",
+  "dataset_status": "public_example_gold_verified_locally",
+  "input_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 43,
+    "total_data_rows": 42,
+    "used_columns": 6,
+    "max_data_columns": 6,
+    "merged_region_count": 8,
+    "used_range_cells": 258,
+    "employee_count": 42,
+    "company_count": 11
+  },
+  "gold_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 53,
+    "used_columns": 6,
+    "total_data_rows": 52,
+    "expected_output_rows": 52,
+    "used_range_cells": 318,
+    "merged_region_count": 45,
+    "output_expansion_ratio": 1.2380952380952381,
+    "employee_count": 42,
+    "company_count": 11,
+    "skill_occurrences": 48,
+    "area_occurrences": 48
+  },
+  "rules": {
+    "column_order": [
+      "Company",
+      "Company Employee Count",
+      "Name",
+      "Employee Skill Count",
+      "Skill",
+      "Area"
+    ],
+    "employee_row_span": "max(skill_count, area_count, 1)",
+    "skill_area_pairing": "Independent lists, no positional relational linkage",
+    "count_company": "Number of original employee entries per company",
+    "count_skill": "Nonempty original Skill cells per employee, including repeated values",
+    "merge_policy": "Merge Company and Company Employee Count per company, Name and Employee Skill Count per employee, and singleton Skill or Area over employee's rows",
+    "empty_policy": "Preserve blank list as blank",
+    "order": "Original company, employee, and within-field order"
+  },
+  "evaluation": {
+    "primary_metric": "Hard Task Success",
+    "reference_gold_success": 1,
+    "mutated_gold_success": 0,
+    "checker_version": "labor43_case_v2"
+  },
+  "publication_policy": "Public demonstration with disclosed gold; never use for unseen evaluation",
+  "taxonomy": {
+    "domain": "labor",
+    "operations": [
+      "OP1",
+      "OP2"
+    ],
+    "structure_tags": [
+      "S2",
+      "S3"
+    ]
+  }
+}

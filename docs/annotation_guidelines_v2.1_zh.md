@@ -22,7 +22,7 @@
 **以领域作为唯一上级分类**。示例：
 
 ```text
-data/environment/case_1_realhitbench/
+data/environment/case_1_realhitbench_environment21/
 data/environment/case_2_public_report/
 data/finance/case_1_statistics/
 ```
@@ -96,8 +96,8 @@ data/finance/case_1_statistics/
   "case_id": "TTB_V2_1_RHB_environment21_OP2_OP3_001",
   "domain": "environment",
   "case_number": 1,
-  "case_slug": "case_1_realhitbench",
-  "case_relative_path": "data/environment/case_1_realhitbench",
+  "case_slug": "case_1_realhitbench_environment21",
+  "case_relative_path": "data/environment/case_1_realhitbench_environment21",
   "source_family_id": "RealHiTBench_environment21",
   "source": {
     "source_dataset": "RealHiTBench",
@@ -162,7 +162,7 @@ data/finance/case_1_statistics/
 
 ### 当前样本的说明
 
-`data/environment/case_1_realhitbench/` 来自 **RealHiTBench environment21**，目标是新增 `Total` 列（OP2）和三条统计行（OP3）；保留 2011 Total、2010 Totals、Mammal/Primate 分组和正确的多级表头。来源许可标注为 **CC BY-NC 4.0**。此样本 **Gold 已公开**，只作为演示/开发用例，不能计入未来隐藏 Test 评测。
+`data/environment/case_1_realhitbench_environment21/` 来自 **RealHiTBench environment21**，目标是新增 `Total` 列（OP2）和三条统计行（OP3）；保留 2011 Total、2010 Totals、Mammal/Primate 分组和正确的多级表头。来源许可标注为 **CC BY-NC 4.0**。此样本 **Gold 已公开**，只作为演示/开发用例，不能计入未来隐藏 Test 评测。
 
 ---
 

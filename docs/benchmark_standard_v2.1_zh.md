@@ -107,7 +107,7 @@ L1–L4 是数据组织上的启发式标签，**不是严格的难度全序**�
 data/
   catalog.json
   environment/
-    case_1_realhitbench/
+    case_1_realhitbench_environment21/
       input.xlsx
       instruction.txt
       metadata.json

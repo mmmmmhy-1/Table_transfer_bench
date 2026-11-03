@@ -21,9 +21,29 @@
       ],
       "split": "example",
       "release_role": "public_demo",
-      "path": "data/environment/case_1_realhitbench",
+      "path": "data/environment/case_1_realhitbench_environment21",
       "case_number": 1,
-      "case_slug": "case_1_realhitbench"
+      "case_slug": "case_1_realhitbench_environment21"
+    },
+    {
+      "case_id": "TTB_V2_1_RHB_labor43_OP1_OP2_001",
+      "domain": "labor",
+      "source_dataset": "RealHiTBench",
+      "source_table_id": "labor43",
+      "source_family_id": "RealHiTBench_labor43",
+      "operations": [
+        "OP1",
+        "OP2"
+      ],
+      "structure_tags": [
+        "S2",
+        "S3"
+      ],
+      "split": "example",
+      "release_role": "public_demo",
+      "path": "data/labor/case_1_realhitbench_labor43",
+      "case_number": 1,
+      "case_slug": "case_1_realhitbench_labor43"
     }
   ]
 }

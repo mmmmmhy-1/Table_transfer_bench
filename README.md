@@ -4,7 +4,7 @@
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
-**Status:** research preview. Currently one public, verified demonstration case is being added; this is **not** a full released benchmark or a hidden test set.
+**Status:** research preview. Currently two public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
 
 ## Benchmark construction and annotation standards
 
@@ -47,7 +47,7 @@ The dataset is organized by **subject domain** and a **unique numbered case fold
 data/
   catalog.json
   environment/
-    case_1_realhitbench/
+    case_1_realhitbench_environment21/
       input.xlsx
       instruction.txt
       metadata.json
@@ -66,14 +66,14 @@ Case names use a stable case number plus a short source suffix for human readabi
 
 ## Public case
 
-[Environment / case_1_realhitbench — OP2 + OP3](data/environment/case_1_realhitbench/README.md)
+[Environment / case_1_realhitbench_environment21 — OP2 + OP3](data/environment/case_1_realhitbench_environment21/README.md)
 
 Input: animal scientific procedures by anaesthesia type, Great Britain 2011. The task restores the **Total column** and **three comparison rows**, while retaining the original two-level anaesthesia header, animal categories (including Mammal/Primate), and two annual total rows.
 
 ```bash
 python -m pip install -r requirements.txt
-python data/environment/case_1_realhitbench/evaluate.py data/environment/case_1_realhitbench/gold_output.xlsx
-python data/environment/case_1_realhitbench/evaluate.py /path/to/submission.xlsx
+python data/environment/case_1_realhitbench_environment21/evaluate.py data/environment/case_1_realhitbench_environment21/gold_output.xlsx
+python data/environment/case_1_realhitbench_environment21/evaluate.py /path/to/submission.xlsx
 ```
 
 Only expose `input.xlsx` and `instruction.txt` to an agent. Gold and reference code must be held back at execution time. The public example is intended for reproducibility, **never for an unseen-test score**.
