@@ -6,6 +6,26 @@ This repository develops a benchmark for **instruction-driven XLSX transformatio
 
 **Status:** research preview. Currently one public, verified demonstration case is being added; this is **not** a full released benchmark or a hidden test set.
 
+## Benchmark construction and annotation standards
+
+The project follows the established **V2.1 Agent-Oriented specification**:
+
+- [Complete V2.1 Construction Standard (中文)](docs/benchmark_standard_v2.1_zh.md)
+- [V2.1 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.1_zh.md)
+- [Machine-readable Metadata JSON Schema](schemas/case_metadata.schema.json)
+- [Documentation index](docs/README.md)
+
+All new cases should carry source attribution and licensing, independently assigned OP1–OP6 and S0–S4 labels, a reproducible Gold and evaluator, and a leak-safe `source_family_id`. Case folders live directly under `data/<domain>/case_<N>_<source-slug>/`.
+
+Validate case metadata and the central catalog:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/validate_annotations.py
+```
+
+**Dataset targets in the standard are research goals, not released counts.** The first public case is only a reproducibility example.
+
 ## Atomic operations
 
 | ID | Operation | Description |

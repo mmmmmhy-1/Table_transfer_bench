@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - 'scripts/build_environment21.py'
+      - 'scripts/validate_annotations.py'
+      - 'docs/**'
+      - 'schemas/**'
+      - 'data/catalog.json'
+      - 'data/**/metadata.json'
+      - 'requirements.txt'
       - 'data/environment/case_1_realhitbench/evaluate.py'
       - '.github/workflows/example-check.yml'
   workflow_dispatch:
@@ -21,6 +27,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install -r requirements.txt
+      - name: Check annotation schema and catalog
+        run: python scripts/validate_annotations.py
       - name: Generate Excel input and gold
         run: python scripts/build_environment21.py
       - name: Verify gold result
