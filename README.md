@@ -4,7 +4,7 @@
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
-**Status:** research preview. Currently two public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
+**Status:** research preview. Currently three public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
 
 ## Benchmark construction and annotation standards
 

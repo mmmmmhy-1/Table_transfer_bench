@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/build_environment21.py'
+      - 'scripts/build_business13.py'
       - 'scripts/validate_annotations.py'
       - 'docs/**'
       - 'schemas/**'
@@ -12,6 +13,7 @@ on:
       - 'data/**/metadata.json'
       - 'requirements.txt'
       - 'data/environment/case_1_realhitbench_environment21/evaluate.py'
+      - 'data/business/case_1_realhitbench_business13/evaluate.py'
       - '.github/workflows/example-check.yml'
   workflow_dispatch:
 
@@ -33,6 +35,10 @@ jobs:
         run: python scripts/build_environment21.py
       - name: Verify gold result
         run: python data/environment/case_1_realhitbench_environment21/evaluate.py data/environment/case_1_realhitbench_environment21/gold_output.xlsx
+      - name: Generate business13 input and gold
+        run: python scripts/build_business13.py
+      - name: Verify business13 example
+        run: python data/business/case_1_realhitbench_business13/evaluate.py data/business/case_1_realhitbench_business13/gold_output.xlsx
       - name: Verify labor example
         run: python data/labor/case_1_realhitbench_labor43/evaluate.py data/labor/case_1_realhitbench_labor43/gold_output.xlsx
       - name: Commit generated XLSX artifacts if changed
@@ -41,6 +47,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/environment/case_1_realhitbench_environment21/input.xlsx data/environment/case_1_realhitbench_environment21/gold_output.xlsx data/environment/case_1_realhitbench_environment21/gold_canonical.json
+          git add data/business/case_1_realhitbench_business13/input.xlsx data/business/case_1_realhitbench_business13/gold_output.xlsx data/business/case_1_realhitbench_business13/gold_canonical.json
           if ! git diff --cached --quiet; then
             git commit -m "data: publish regenerated RealHiTBench environment21 example"
             git push

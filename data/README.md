@@ -37,3 +37,5 @@ data/
 The current RealHiTBench-derived example is subject to **CC BY-NC 4.0**. Licensing must be checked per source dataset; the benchmark repository does not automatically own the underlying data.
 
 - Labor public review example: `data/labor/case_1_realhitbench_labor43/` (RealHiTBench labor43, OP1+OP2).
+
+- Business public example: `data/business/case_1_realhitbench_business13/` (RealHiTBench business13, OP1+OP2).
