@@ -20,3 +20,11 @@ python scripts/validate_annotations.py
 ```
 
 Excel semantics: F7:F8 is vertically merged for demo name 6's Manchester, whose Skill values occupy two separate rows. The evaluator checks exact values, row order, grouping and merges, with limited support for valid uncached COUNT formulas.
+
+## Agentic instruction tracks (V2.1)
+
+- **Main / Discovery:** pass only `input.xlsx` and `instruction.txt` to the agent. Prompts state business requirements and output invariants without revealing unnecessary coordinates, original-data totals or sample answers.
+- **Guided diagnostic:** use `instruction_guided.txt` *instead of*, never together with, the Discovery prompt; report results separately. Do not add guided examples to the main leaderboard.
+- **Gold / Evaluator:** reference layout is illustrative where the main prompt does not prescribe a location; this case's evaluator checks specified business semantics, values and required merges, including supported uncached numeric formulas.
+
+See [agentic prompt authoring](../../../docs/instruction_authoring_v2.1_zh.md). These public examples must not be counted in a held-out test set.

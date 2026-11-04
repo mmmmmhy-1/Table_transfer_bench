@@ -1,0 +1,8 @@
+Source columns: A=Company, B=Name, C/D=Skill values, E/F=Area values. A vertically merged Company denotes a group of original employees.
+
+Produce one worksheet named "Labor Transformation" with this exact order:
+A Company | B Company Employee Count | C Name | D Employee Skill Count | E Skill | F Area.
+
+For each original employee row, independently expand both recorded Skill entries into column E and both Area entries into F. Allocate max(skill count, area count, 1) rows per employee. Do not pair specific skills with specific areas, do not create a Cartesian product, and do not change values. If a list has exactly one value over a multi-row employee group, merge that value across the group. Merge the employee's Name and skill count across multirow groups. Merge Company and company employee count over each company's complete output block.
+
+B is the number of ORIGINAL employee entries belonging to the Company; D is the number of nonempty original Skill fields for that employee, duplicates included. Preserve original ordering; numeric counts are required. Save as submission.xlsx.

@@ -240,6 +240,26 @@
       "items": {
         "type": "string"
       }
+    },
+    "prompt_mode": {
+      "type": "string",
+      "enum": [
+        "discovery",
+        "guided"
+      ],
+      "description": "Default agent-facing prompt mode. Main benchmark uses discovery."
+    },
+    "prompt_tracks": {
+      "type": "object",
+      "properties": {
+        "discovery": {
+          "type": "string"
+        },
+        "guided": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": true,

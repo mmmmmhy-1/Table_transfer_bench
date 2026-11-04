@@ -126,6 +126,9 @@ data/finance/case_1_statistics/
 
 ## 六、指令文本验收标准
 
+**新增统一细则：**所有任务按[Agentic Discovery/Guided 指令编写规范](instruction_authoring_v2.1_zh.md)审核。`instruction.txt` 为主轨道，不泄露无必要的绝对坐标、正确记录数、示例派生数值或实现步骤；Guided 轨道使用单独的 `instruction_guided.txt`，两轨不混分。审查需同时核对 Gold/Evaluator 是否把未约定的布局硬编码为扣分项。
+
+
 标注者检查：
 
 - 是否可以在不求助隐藏 Gold 的情况下完成？

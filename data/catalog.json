@@ -56,7 +56,8 @@
         "OP2"
       ],
       "structure_tags": [
-        "S0"
+        "S3",
+        "S4"
       ],
       "split": "example",
       "release_role": "public_demo",

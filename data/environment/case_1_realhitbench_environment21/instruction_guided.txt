@@ -1,0 +1,7 @@
+In the source workbook, the header occupies rows 4–5: A4:A5 = Species of animal; B4:B5 = No anaesthesia, independent of the four columns grouped under C4:F4 = Type of anaesthesia. The 2011 Total summary row appears immediately before 2010 Totals.
+
+Add a new standalone rightmost Total column, vertically merged as a header across the two header rows. For each animal detail row and each 2011/2010 summary row, sum the five count-category cells. For arithmetic, treat a dash as zero but preserve the original dash in source cells. Mammal and Primate are group headings and must not receive totals.
+
+Insert, directly after the existing 2011 Total row, these new statistical rows: Increase on 2010 = 2011-2010; Percentage change from 2010 = (2011-2010)/abs(2010); Percentage of total for 2011 = 2011 category total/2011 grand total. The new Total column on the last row is 100%. Show percentage rows using 0% formatting without rounding underlying numeric ratios; blank any zero-denominator result.
+
+Preserve the original title, footnote, counts, headings, hierarchy and sheet. Save as submission.xlsx.

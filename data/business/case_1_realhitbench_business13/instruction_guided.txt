@@ -1,0 +1,13 @@
+Transform the provided long-form input into the output specified below. The business meaning, facts and precision are identical to the Discovery task.
+
+The source has Country / Metric / Year / Value records for two metrics (Exports of services (£m); Percentage of telecoms world total) for 2014 and 2015; Notes and Key are below the records. Pivot the records into a two-level grouped wide report with one row per Country, preserving order.
+
+Target worksheet: "Exports of services".
+A1:A2 merged: Country.
+B1:C1 merged: Exports of services (£m); B2=2014, C2=2015.
+D1:E1 merged: Percentage of telecoms world total; D2=2014, E2=2015.
+F1:F2 merged: Export services YoY growth (2015 vs 2014); this is an independent metric column.
+
+Write the country rows below the two-level header. For each row, compute growth as (C-B)/B, blank when B is zero, and use numeric ratio / Excel 0.00% formatting. The original world-total share numbers are percentage-point values; do not divide them by 100 or apply an Excel percent format to them.
+
+Retain Notes and Key verbatim after the country rows, in the same order; their exact row indices are optional. Preserve units and do not add extra facts or sheets. Save as submission.xlsx.

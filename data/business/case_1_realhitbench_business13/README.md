@@ -23,3 +23,11 @@ python scripts/validate_annotations.py
 ```
 
 The generator transcribes source values and Notes/Key, with a deterministic cached ratio in the Gold formula cells. Source amounts in £m are rounded; growth is computed from those published rounded values.
+
+## Agentic instruction tracks (V2.1)
+
+- **Main / Discovery:** pass only `input.xlsx` and `instruction.txt` to the agent. Prompts state business requirements and output invariants without revealing unnecessary coordinates, original-data totals or sample answers.
+- **Guided diagnostic:** use `instruction_guided.txt` *instead of*, never together with, the Discovery prompt; report results separately. Do not add guided examples to the main leaderboard.
+- **Gold / Evaluator:** reference layout is illustrative where the main prompt does not prescribe a location; this case's evaluator checks specified business semantics, values and required merges, including supported uncached numeric formulas.
+
+See [agentic prompt authoring](../../../docs/instruction_authoring_v2.1_zh.md). These public examples must not be counted in a held-out test set.

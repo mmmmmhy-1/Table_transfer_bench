@@ -39,3 +39,5 @@ The current RealHiTBench-derived example is subject to **CC BY-NC 4.0**. Licensi
 - Labor public review example: `data/labor/case_1_realhitbench_labor43/` (RealHiTBench labor43, OP1+OP2).
 
 - Business public example: `data/business/case_1_realhitbench_business13/` (RealHiTBench business13, OP1+OP2).
+
+- **Agent prompt policy:** give only `instruction.txt` with `input.xlsx` on the Discovery track. `instruction_guided.txt` (if present) is reserved for separately scored structure-guided diagnosis. See [authoring requirements](../docs/instruction_authoring_v2.1_zh.md). Gold and evaluators must remain inaccessible to the running agent.

@@ -23,7 +23,8 @@
       "Transcribed the seven country rows and metric values from source HTML into 28 long-form records",
       "Kept the original explanatory Notes and Key",
       "Reconstructed two-level grouped metric/year headers in gold output",
-      "Derived 2015-vs-2014 export growth percentages as numeric ratios, displayed with Excel 0.00%"
+      "Derived 2015-vs-2014 export growth percentages as numeric ratios, displayed with Excel 0.00%",
+      "Corrected structural tags to reflect merged Notes/Key section in the actual Input workbook"
     ]
   },
   "primary_operation": "OP1",
@@ -52,11 +53,13 @@
     ]
   ],
   "structure_tags": [
-    "S0"
+    "S3",
+    "S4"
   ],
   "output_structure_tags": [
     "S1",
-    "S3"
+    "S3",
+    "S4"
   ],
   "difficulty": "L3",
   "split": "example",
@@ -71,7 +74,8 @@
     "source_country_count": 7,
     "source_metric_count": 2,
     "source_year_count": 2,
-    "note_rows": 6
+    "note_rows": 6,
+    "merged_region_count": 6
   },
   "gold_table_stats": {
     "num_sheets": 1,
@@ -99,7 +103,16 @@
   "evaluation": {
     "primary_metric": "Hard Task Success",
     "gold_verified_locally": true,
-    "source_data_verified_locally": true
+    "source_data_verified_locally": true,
+    "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
+    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas",
+    "note_key_layout": "Preserved contents and order below data, coordinates and decorative merge widths may vary"
   },
-  "publication_policy": "Public example only, not eligible for held-out Test"
+  "publication_policy": "Public example only, not eligible for held-out Test",
+  "prompt_mode": "discovery",
+  "prompt_tracks": {
+    "discovery": "instruction.txt",
+    "guided": "instruction_guided.txt"
+  },
+  "input_structure_evidence": "The main 28-record table is flat, but the workbook also contains a separated Notes/Key block with six merged explanatory ranges (S3/S4)."
 }

@@ -12,6 +12,7 @@ The project follows the established **V2.1 Agent-Oriented specification**:
 
 - [Complete V2.1 Construction Standard (中文)](docs/benchmark_standard_v2.1_zh.md)
 - [V2.1 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.1_zh.md)
+- [Agentic Discovery/Guided 指令编写与审核规范](docs/instruction_authoring_v2.1_zh.md)
 - [Machine-readable Metadata JSON Schema](schemas/case_metadata.schema.json)
 - [Documentation index](docs/README.md)
 
@@ -24,7 +25,7 @@ python -m pip install -r requirements.txt
 python scripts/validate_annotations.py
 ```
 
-**Dataset targets in the standard are research goals, not released counts.** The first public case is only a reproducibility example.
+**Dataset targets in the standard are research goals, not released counts.** The public cases are reproducibility examples, not a hidden test set.
 
 ## Atomic operations
 

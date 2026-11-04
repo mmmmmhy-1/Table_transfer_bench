@@ -133,6 +133,9 @@ data/
 
 ## 6. 指令编写
 
+> **现行配套规范：**[Agentic 任务指令编写与审核规范](instruction_authoring_v2.1_zh.md)。`instruction.txt` 为 Discovery 主轨道任务；`instruction_guided.txt` 为可选的独立诊断/消融任务。业务约束必须充分，避免用不必要的坐标、原始条目总数或正确派生值提供答案线索。Gold/Evaluator 不得暗扣指令未声明的布局条件。
+
+
 每条 `instruction.txt` 应包含：所需操作及目标字段、输入依据、保留/删除策略、排序或行插入要求、舍入模式与精度、空值/零值/除零规则、Join 键和未匹配处理（若适用）、提交文件名。
 
 - 不直接复制 Gold Output 数值。

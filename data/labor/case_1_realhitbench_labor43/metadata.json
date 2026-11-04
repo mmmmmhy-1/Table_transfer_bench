@@ -118,7 +118,9 @@
     "primary_metric": "Hard Task Success",
     "reference_gold_success": 1,
     "mutated_gold_success": 0,
-    "checker_version": "labor43_case_v2"
+    "checker_version": "labor43_case_v2",
+    "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
+    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas"
   },
   "publication_policy": "Public demonstration with disclosed gold; never use for unseen evaluation",
   "taxonomy": {
@@ -131,5 +133,10 @@
       "S2",
       "S3"
     ]
+  },
+  "prompt_mode": "discovery",
+  "prompt_tracks": {
+    "discovery": "instruction.txt",
+    "guided": "instruction_guided.txt"
   }
 }

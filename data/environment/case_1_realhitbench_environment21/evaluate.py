@@ -1,42 +1,48 @@
 #!/usr/bin/env python3
-"""Case-specific strict evaluator. Run: python evaluate.py /path/to/submission.xlsx."""
-import sys,json,math
+"""Evaluate environment21 data and hierarchy, accepting valid uncached formulas."""
 from pathlib import Path
 from openpyxl import load_workbook
+import json,math,sys
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT))
+from scripts.formula_eval import SpreadsheetFormulaEvaluator, FormulaError
 BASE=Path(__file__).resolve().parent
 
 def evaluate(path):
-    gold=load_workbook(BASE/"gold_output.xlsx",data_only=True)
-    sub=load_workbook(path,data_only=True)
+    try:
+        gold=load_workbook(BASE/'gold_output.xlsx',data_only=True)
+        book=load_workbook(path,data_only=False)
+        cached=load_workbook(path,data_only=True)
+    except Exception as exc:return {'hard_task_success':0,'error_count':1,'errors':[str(exc)]}
     errors=[]
-    if len(sub.sheetnames)!=1:errors.append("Expected exactly one worksheet")
-    sw=sub.active;gw=gold.active
-    if sw.max_column!=7:errors.append("Expected seven columns")
-    need={"A4:A5","B4:B5","C4:F4","G4:G5"}
-    actual={str(x) for x in sw.merged_cells.ranges}
-    if not need.issubset(actual):errors.append("Incorrect merged header ranges")
-    for cell,value in {"A4":"Species of animal","B4":"No anaesthesia","C4":"Type of anaesthesia","G4":"Total"}.items():
-        if sw[cell].value!=value:errors.append("Wrong header "+cell)
-    for row in range(1,33):
-        for col in range(1,8):
-            a=sw.cell(row,col).value;b=gw.cell(row,col).value
-            same=(math.isclose(a,b,rel_tol=1e-11,abs_tol=1e-12) if isinstance(a,(int,float)) and isinstance(b,(int,float)) else a==b)
-            if not same:errors.append(f"{sw.cell(row,col).coordinate}: expected {b!r}, got {a!r}")
-    for row in sw.iter_rows(min_row=33):
-        if any(c.value is not None for c in row):
-            errors.append("Extra populated rows");break
-    for r,label in ((6,"Mammal"),(19,"Primate")):
-        if sw.cell(r,1).value!=label:errors.append("Missing group "+label)
-    for r in (20,21):
-        if (sw.cell(r,1).alignment.indent or 0)<2:errors.append("Incorrect child indent at "+str(r))
-    for r in (29,30):
-        for c in range(2,8):
-            if sw.cell(r,c).number_format not in ("0%","0%;[Red]-0%;0%"):
-                errors.append("Wrong percentage format at "+sw.cell(r,c).coordinate)
-    return {"hard_task_success":int(not errors),"error_count":len(errors),"errors":errors[:40]}
+    if book.sheetnames!=gold.sheetnames:errors.append('Original sheet name/count must be preserved')
+    w=book.active;g=gold.active;calc=SpreadsheetFormulaEvaluator(w,cached.active)
+    if w.max_column!=7:errors.append('Expected original fields plus rightmost Total')
+    if w.max_row!=32:errors.append('Unexpected row count')
+    required={'A4:A5','B4:B5','C4:F4','G4:G5','A1:G1','A32:G32'}
+    actual={str(x) for x in w.merged_cells.ranges}
+    if not required.issubset(actual):errors.append('Incorrect original/group/Total header or title/footnote merges')
+    for row in range(1,max(32,w.max_row)+1):
+        for col in range(1,max(7,w.max_column)+1):
+            coordinate=w.cell(row,col).coordinate
+            need=g.cell(row,col).value if row<=32 and col<=7 else None
+            try:have=calc.cell(coordinate)
+            except Exception as exc:
+                errors.append(f'{coordinate}: unevaluable formula: {exc}');continue
+            if isinstance(need,(float,int)) and not isinstance(need,bool):
+                if not isinstance(have,(float,int)) or isinstance(have,bool) or not math.isclose(have,need,rel_tol=1e-10,abs_tol=1e-12):
+                    errors.append(f'{coordinate}: expected {need!r}, got {have!r}')
+            elif have!=need:errors.append(f'{coordinate}: expected {need!r}, got {have!r}')
+            if len(errors)>100:break
+        if len(errors)>100:break
+    for row in (29,30):
+        for col in range(2,8):
+            if w.cell(row,col).number_format not in ('0%','0%;[Red]-0%;0%'):
+                errors.append(f'{w.cell(row,col).coordinate}: wrong percent format')
+    return {'hard_task_success':int(not errors),'error_count':len(errors),'errors':errors[:40]}
 
-if __name__=="__main__":
-    f=Path(sys.argv[1]) if len(sys.argv)>1 else BASE/"gold_output.xlsx"
-    outcome=evaluate(f)
-    print(json.dumps(outcome,ensure_ascii=False,indent=2))
-    raise SystemExit(0 if outcome["hard_task_success"] else 1)
+if __name__=='__main__':
+    target=Path(sys.argv[1]) if len(sys.argv)>1 else BASE/'gold_output.xlsx'
+    result=evaluate(target)
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+    sys.exit(0 if result['hard_task_success'] else 1)

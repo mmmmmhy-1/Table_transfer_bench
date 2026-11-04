@@ -93,7 +93,9 @@
   "evaluation": {
     "primary_metric": "Hard Task Success",
     "reference_gold_success": 1,
-    "mutated_gold_success": 0
+    "mutated_gold_success": 0,
+    "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
+    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas"
   },
   "publication_policy": "Example with public gold; never held-out test",
   "domain": "environment",
@@ -115,5 +117,10 @@
     ]
   },
   "case_number": 1,
-  "case_slug": "case_1_realhitbench_environment21"
+  "case_slug": "case_1_realhitbench_environment21",
+  "prompt_mode": "discovery",
+  "prompt_tracks": {
+    "discovery": "instruction.txt",
+    "guided": "instruction_guided.txt"
+  }
 }

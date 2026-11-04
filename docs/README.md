@@ -4,6 +4,7 @@
 
 - [V2.1 Benchmark Construction Standard — 中文](benchmark_standard_v2.1_zh.md): aims, six operations, independent structural/scale dimensions, composition, quality, evaluation, split, baselines.
 - [V2.1 Annotation and Construction SOP — 中文](annotation_guidelines_v2.1_zh.md): case-by-case labeling procedure, boundary decisions, metadata fields, review checklists and rejection rules.
+- [Agentic task instruction authoring / Discovery–Guided policy — 中文](instruction_authoring_v2.1_zh.md): leakage checks, necessary business constraints, prompt/Gold/Evaluator alignment, and public-case examples.
 - [Metadata JSON Schema](../schemas/case_metadata.schema.json): machine-readable validation contract for each case.
 - [Dataset case naming and organization](../data/README.md): `data/<domain>/case_<N>_<source-slug>/`.
 

@@ -1,16 +1,15 @@
-Transform the supplied long-form XLSX into a grouped wide table and compute 2015 versus 2014 export-services year-over-year growth.
+Convert the supplied long-form exports-of-services workbook into a grouped wide report and add the year-over-year growth in export value from 2014 to 2015.
 
-The input contains 28 data records (seven Country values, including World total; two Metric values; years 2014 and 2015), followed by Notes and Key. Each data record contributes one metric/year fact. Pivot these facts into exactly seven country rows, not 28 output detail rows. Preserve every original measurement and the Notes/Key contents.
+Produce one worksheet named "Exports of services". Show one data row per Country in the source order, including the world-total row. At the top of the report, use a two-level grouped column header with the following order and relationships:
+- Country as its own column, vertically spanning the two header levels.
+- "Exports of services (£m)" as a parent heading over separate 2014 and 2015 columns.
+- "Percentage of telecoms world total" as a separate parent heading over 2014 and 2015 columns.
+- "Export services YoY growth (2015 vs 2014)" as an independent rightmost column, not nested under either parent heading; its heading spans the two header levels.
 
-1. Create exactly one output worksheet named "Exports of services", with six columns A-F and a two-level header:
-   A1:A2 merged: "Country".
-   B1:C1 merged: "Exports of services (£m)"; B2="2014" and C2="2015".
-   D1:E1 merged: "Percentage of telecoms world total"; D2="2014" and E2="2015".
-   F1:F2 merged: "Export services YoY growth (2015 vs 2014)".
-   F must be an independent column, not a child of either existing metric group.
-2. Reconstruct one row per Country, preserving country order from the long input. For each metric/year pair, copy the numeric Value to its corresponding wide cell without inventing or rescaling values. The original world-share figures (e.g. 0.9 or 100.0) already represent percentage-point units: keep underlying numeric values unchanged and format these columns with 0.0, not Excel %.
-3. In F for each country, including World total, compute (exports_2015 - exports_2014) / exports_2014 using that same row's B and C cells. If exports_2014 is zero, leave F blank. Store a numeric ratio or a valid executable Excel formula, not a text percentage. Format F as 0.00% (e.g. Bahrain shows -22.95%) without rounding the underlying ratio.
-4. After the seven country rows, leave exactly two blank rows. Preserve the input's exact Notes and Key texts in order, using A12="Notes", B13 and B14 for its two statements, A15="Key", and B16 and B17 for its two definitions. Merge each text cell B12:F12 through B17:F17, including the label rows, as shown by the original grouped presentation. The original figures are exports of services (not goods), at current prices, rounded to the nearest £m. Do not recalculate original exports or world-share figures.
-5. Keep exactly the stated six columns, seven countries, 17 used rows, and one worksheet. Do not add or delete source facts, append extra rows, change the order of sections, or alter units. Neutral styling is fine, but actual Excel header and note merges are required.
+Reorganize all original Country / Metric / Year / Value facts without changing their values, units, or country order. The preexisting world-total share figures are already recorded in percentage points (for example, 0.9 means 0.9%, not 90%); keep their underlying numeric values and display them as ordinary numbers, not Excel percentages.
+
+For each country, calculate export growth as (2015 exports of services - 2014 exports of services) / 2014 exports of services. Include the world-total row. If the 2014 value is zero, leave the growth result blank. The growth field must be an Excel numeric ratio or an evaluable formula, displayed with the format 0.00%; do not store text percentages or round the underlying calculation.
+
+Keep the original Notes and Key statements verbatim, in their original order, as a clearly separated explanatory section BELOW the wide data table. The explanatory section's exact cell coordinates and decorative merge widths are not prescribed. The report should have no other metrics, extra country records, or unrelated worksheets.
 
 Save the completed workbook as submission.xlsx.
