@@ -1,6 +1,6 @@
 {
   "benchmark": "Table Transformation Benchmark",
-  "benchmark_version": "2.1",
+  "benchmark_version": "2.2",
   "case_id": "TTB_V2_1_RHB_environment21_OP2_OP3_001",
   "source_family_id": "RealHiTBench_environment21",
   "source_id": "RealHiTBench_environment21_Table5",

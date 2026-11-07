@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Table Transfer Bench V2.1 case annotations and catalog consistency.
+"""Validate Table Transfer Bench V2.2 case annotations and catalog consistency.
 
 This is a metadata-only checker. The case-specific evaluator must separately
 validate workbook content, gold output and error injection.

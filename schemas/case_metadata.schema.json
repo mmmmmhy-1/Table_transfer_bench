@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/mmmmmhy-1/Table_transfer_bench/blob/main/schemas/case_metadata.schema.json",
-  "title": "Table Transformation Benchmark V2.1 — case metadata",
-  "description": "Schema for annotation and source provenance. Recommended dimensions may be absent in legacy public examples; future official cases should record them.",
+  "title": "Table Transformation Benchmark V2.2 — case metadata",
+  "description": "V2.2 adds OP7 Structural Transformation (semantic merge/group/header transformations); existing public case IDs are immutable.",
   "type": "object",
   "required": [
     "case_id",
@@ -20,7 +20,7 @@
       "type": "string"
     },
     "benchmark_version": {
-      "const": "2.1"
+      "const": "2.2"
     },
     "case_id": {
       "type": "string",
@@ -271,7 +271,8 @@
         "OP3",
         "OP4",
         "OP5",
-        "OP6"
+        "OP6",
+        "OP7"
       ]
     }
   }

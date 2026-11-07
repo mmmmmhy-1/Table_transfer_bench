@@ -1,6 +1,6 @@
 # Table Transfer Bench
 
-> **Table Transformation Benchmark V2.1 — agent-oriented research preview**
+> **Table Transformation Benchmark V2.2 — agent-oriented research preview**
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
@@ -8,15 +8,15 @@ This repository develops a benchmark for **instruction-driven XLSX transformatio
 
 ## Benchmark construction and annotation standards
 
-The project follows the established **V2.1 Agent-Oriented specification**:
+The project follows the established **V2.2 Agent-Oriented specification**:
 
-- [Complete V2.1 Construction Standard (中文)](docs/benchmark_standard_v2.1_zh.md)
-- [V2.1 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.1_zh.md)
-- [Agentic Discovery/Guided 指令编写与审核规范](docs/instruction_authoring_v2.1_zh.md)
+- [Complete V2.2 Construction Standard (中文)](docs/benchmark_standard_v2.2_zh.md)
+- [V2.2 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.2_zh.md)
+- [Agentic Discovery/Guided 指令编写与审核规范](docs/instruction_authoring_v2.2_zh.md)
 - [Machine-readable Metadata JSON Schema](schemas/case_metadata.schema.json)
 - [Documentation index](docs/README.md)
 
-All new cases should carry source attribution and licensing, independently assigned OP1–OP6 and S0–S4 labels, a reproducible Gold and evaluator, and a leak-safe `source_family_id`. Case folders live directly under `data/<domain>/case_<N>_<source-slug>/`.
+All new cases should carry source attribution and licensing, independently assigned OP1–OP7 and S0–S4 labels, a reproducible Gold and evaluator, and a leak-safe `source_family_id`. Case folders live directly under `data/<domain>/case_<N>_<source-slug>/`.
 
 Validate case metadata and the central catalog:
 
@@ -37,8 +37,11 @@ python scripts/validate_annotations.py
 | OP4 | Field Decomposition | Extract components of compound fields |
 | OP5 | Field Normalization | Normalize types, formats, units, and categories |
 | OP6 | Relational Join | Key-based integration of tables |
+| OP7 | Structural Transformation | Semantics-preserving merge/group hierarchy and multi-level header transformation |
 
 We annotate table structure separately (**S0** flat, **S1** multi-level column headers, **S2** hierarchical row headers, **S3** merged cells, **S4** irregular layouts). Scale is measured continuously, not assigned fixed Small/Medium bins. Compositions and their dependencies are explicitly recorded.
+
+OP7 is distinct from input structure tags (S0–S4). Only an explicitly requested semantic merge/header/hierarchy transformation earns OP7; retaining pre-existing structure does not. The previous V2.1 construction documents remain in `docs/` as historical references.
 
 ## Dataset organization
 
@@ -78,6 +81,8 @@ python data/environment/case_1_realhitbench_environment21/evaluate.py /path/to/s
 ```
 
 Only expose `input.xlsx` and `instruction.txt` to an agent. Gold and reference code must be held back at execution time. The public example is intended for reproducibility, **never for an unseen-test score**.
+
+[Labor / case_1_realhitbench_labor43 — OP1 + OP2 + OP7](data/labor/case_1_realhitbench_labor43/README.md): Skill/Area expansion, derived counts, and reconstructed group/employee merge relations.
 
 ## Planned releases
 

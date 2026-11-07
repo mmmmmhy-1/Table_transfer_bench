@@ -1,6 +1,6 @@
 {
   "benchmark": "Table Transformation Benchmark",
-  "benchmark_version": "2.1",
+  "benchmark_version": "2.2",
   "case_id": "TTB_V2_1_RHB_labor43_OP1_OP2_001",
   "case_number": 1,
   "case_slug": "case_1_realhitbench_labor43",
@@ -32,7 +32,8 @@
   "primary_operation": "OP1",
   "operations": [
     "OP1",
-    "OP2"
+    "OP2",
+    "OP7"
   ],
   "operation_nodes": [
     {
@@ -52,6 +53,12 @@
       "operation": "OP2",
       "subtype": "D1",
       "target": "Employee Skill Count"
+    },
+    {
+      "id": "reconstruct_semantic_merges",
+      "operation": "OP7",
+      "subtype": "T1",
+      "target": "Output Company / Company Employee Count, Name / Employee Skill Count, and singleton Skill / Area vertical merge ranges"
     }
   ],
   "dependency_edges": [
@@ -62,13 +69,25 @@
     [
       "reshape_skill_area",
       "derive_employee_skill_count"
+    ],
+    [
+      "reshape_skill_area",
+      "reconstruct_semantic_merges"
+    ],
+    [
+      "derive_company_count",
+      "reconstruct_semantic_merges"
+    ],
+    [
+      "derive_employee_skill_count",
+      "reconstruct_semantic_merges"
     ]
   ],
   "structure_tags": [
     "S2",
     "S3"
   ],
-  "difficulty": "L3",
+  "difficulty": "L4",
   "split": "example",
   "release_role": "public_demo",
   "dataset_status": "public_example_gold_verified_locally",
@@ -112,7 +131,9 @@
     "count_skill": "Nonempty original Skill cells per employee, including repeated values",
     "merge_policy": "Merge Company and Company Employee Count per company, Name and Employee Skill Count per employee, and singleton Skill or Area over employee's rows",
     "empty_policy": "Preserve blank list as blank",
-    "order": "Original company, employee, and within-field order"
+    "order": "Original company, employee, and within-field order",
+    "structure_transformation": "Reconstruct vertically merged company and employee groups and singleton Skill/Area ranges after independent-list reshape; output merged ranges must encode source group semantics",
+    "structure_operation_subtype": "T1"
   },
   "evaluation": {
     "primary_metric": "Hard Task Success",
@@ -120,14 +141,16 @@
     "mutated_gold_success": 0,
     "checker_version": "labor43_case_v2",
     "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
-    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas"
+    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas",
+    "structural_metric": "Merged range correctness and preservation of semantic grouping (45 output merged ranges)"
   },
   "publication_policy": "Public demonstration with disclosed gold; never use for unseen evaluation",
   "taxonomy": {
     "domain": "labor",
     "operations": [
       "OP1",
-      "OP2"
+      "OP2",
+      "OP7"
     ],
     "structure_tags": [
       "S2",
@@ -138,5 +161,6 @@
   "prompt_tracks": {
     "discovery": "instruction.txt",
     "guided": "instruction_guided.txt"
-  }
+  },
+  "annotation_revision": "V2.2 reclassification: OP7 T1 explicitly required by original Discovery prompt; existing gold/evaluator already tests output merges; original case_id intentionally stable. Difficulty upgraded L3 to L4 because three genuine OP classes are now annotated."
 }

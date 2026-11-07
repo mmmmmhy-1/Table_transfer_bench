@@ -28,7 +28,7 @@ data/
 - **Domain:** `environment`, `finance`, `industry`, `science`, etc. Chosen for the *subject of the table*, not for the originating benchmark.
 - **Case name:** `case_<N>_<source-slug>`. Assign a unique, stable number **within a domain**; use the same standard on every future case. Do not renumber published cases.
 - **Source/provenance:** `metadata.json` must record the actual `source_dataset`, `source_instance`, `source_url`, original filename, license, transformation history, and `source_family_id`.
-- **Operations:** `operations` can hold OP1–OP6 and their combinations. Do not create extra copies of the same case under different operation folders.
+- **Operations:** `operations` can hold OP1–OP7 and their combinations. Do not create extra copies of the same case under different operation folders.
 - **Structure and scale:** preserve independent `structure_tags` and continuous workbook statistics in metadata.
 - **Cross-case isolation:** variants derived from the same original table share the same `source_family_id`, even when they live in separate case folders. Keep that family together for train/dev/test splits.
 - **Public examples:** cases with `split: example` and `release_role: public_demo` may contain public gold. Never score them as held-out test cases. Keep hidden-test answers private.
@@ -36,8 +36,8 @@ data/
 
 The current RealHiTBench-derived example is subject to **CC BY-NC 4.0**. Licensing must be checked per source dataset; the benchmark repository does not automatically own the underlying data.
 
-- Labor public review example: `data/labor/case_1_realhitbench_labor43/` (RealHiTBench labor43, OP1+OP2).
+- Labor public review example: `data/labor/case_1_realhitbench_labor43/` (RealHiTBench labor43, OP1+OP2+OP7).
 
 - Business public example: `data/business/case_1_realhitbench_business13/` (RealHiTBench business13, OP1+OP2).
 
-- **Agent prompt policy:** give only `instruction.txt` with `input.xlsx` on the Discovery track. `instruction_guided.txt` (if present) is reserved for separately scored structure-guided diagnosis. See [authoring requirements](../docs/instruction_authoring_v2.1_zh.md). Gold and evaluators must remain inaccessible to the running agent.
+- **Agent prompt policy:** give only `instruction.txt` with `input.xlsx` on the Discovery track. `instruction_guided.txt` (if present) is reserved for separately scored structure-guided diagnosis. See [authoring requirements](../docs/instruction_authoring_v2.2_zh.md). Gold and evaluators must remain inaccessible to the running agent.
