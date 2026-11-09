@@ -108,6 +108,13 @@ class APIError(RuntimeError):
     pass
 
 
+def container_identity():
+    """Keep bind mounts writable on Linux without running the agent as root."""
+    uid = getattr(os, 'getuid', lambda: 1000)()
+    gid = getattr(os, 'getgid', lambda: 1000)()
+    return (uid, gid) if uid > 0 else (1000, 1000)
+
+
 class Client:
     def __init__(self, config, key):
         self.config, self.key = config, key
@@ -149,9 +156,13 @@ class Sandbox:
     def __init__(self, config, input_dir, workspace):
         self.config = config
         self.name = 'ttb-' + uuid.uuid4().hex[:16]
+        uid, gid = container_identity()
+        if os.name == 'posix' and os.getuid() == 0:
+            os.chown(workspace, uid, gid)
         args = ['docker', 'run', '-d', '--rm', '--name', self.name,
                 '--label', 'table-transfer-bench=0.1', '--network', 'none',
                 '--read-only', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
+                '--user', f'{uid}:{gid}',
                 '--pids-limit', '128', '--cpus', '2', '--memory', '1g',
                 '--tmpfs', '/tmp:rw,size=128m',
                 '--mount', f'type=bind,src={input_dir.resolve()},dst=/input,readonly',

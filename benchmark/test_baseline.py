@@ -5,15 +5,24 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import threading
 import unittest
+from unittest.mock import patch
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from openpyxl import Workbook
 
-from benchmark.runner import Client, Sandbox, aggregate, redact
+from benchmark.runner import Client, Sandbox, aggregate, container_identity, redact
 from benchmark.view_xlsx import inspect_workbook
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_linux_identity_matches_nonroot_mount_owner(self):
+        with patch('benchmark.runner.os.getuid', return_value=1001, create=True), patch('benchmark.runner.os.getgid', return_value=1002, create=True):
+            self.assertEqual(container_identity(), (1001, 1002))
+
+    def test_root_host_does_not_make_agent_root(self):
+        with patch('benchmark.runner.os.getuid', return_value=0, create=True), patch('benchmark.runner.os.getgid', return_value=0, create=True):
+            self.assertEqual(container_identity(), (1000, 1000))
+
     def test_structure_and_percent_are_raw_evidence(self):
         with TemporaryDirectory() as tmp:
             path = Path(tmp) / 'input.xlsx'
