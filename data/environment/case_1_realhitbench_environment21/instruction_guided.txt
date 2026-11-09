@@ -1,7 +1,18 @@
-In the source workbook, the header occupies rows 4–5: A4:A5 = Species of animal; B4:B5 = No anaesthesia, independent of the four columns grouped under C4:F4 = Type of anaesthesia. The 2011 Total summary row appears immediately before 2010 Totals.
+Guided source-structure information: the input header occupies rows 4-5. A4:A5 is Species of animal; B4:B5 is No anaesthesia; C4:F4 groups the four Type of anaesthesia columns. The existing 2011 Total summary row appears immediately before 2010 Totals.
 
-Add a new standalone rightmost Total column, vertically merged as a header across the two header rows. For each animal detail row and each 2011/2010 summary row, sum the five count-category cells. For arithmetic, treat a dash as zero but preserve the original dash in source cells. Mammal and Primate are group headings and must not receive totals.
+Complete the supplied workbook on scientific procedures in Great Britain. Preserve the source observations and hierarchy, and produce a finished Excel report.
 
-Insert, directly after the existing 2011 Total row, these new statistical rows: Increase on 2010 = 2011-2010; Percentage change from 2010 = (2011-2010)/abs(2010); Percentage of total for 2011 = 2011 category total/2011 grand total. The new Total column on the last row is 100%. Show percentage rows using 0% formatting without rounding underlying numeric ratios; blank any zero-denominator result.
+Add a standalone rightmost column named "Total". For each animal detail row and for the existing annual summary rows, calculate the sum across the five anaesthesia-count categories. Treat a dash ("-") as zero when calculating a sum, but leave dashes in the source cells unchanged. "Mammal" and "Primate" are category headings, not observations; they must not receive numerical totals.
 
-Preserve the original title, footnote, counts, headings, hierarchy and sheet. Save as submission.xlsx.
+Immediately after the existing 2011 "Total" summary row and before the "2010 Totals" row, insert three calculated rows in the following order:
+- "Increase on 2010": the 2011 annual total minus the 2010 annual total, for each count category and the new Total column.
+- "Percentage change from 2010": that increase divided by the absolute 2010 annual total for the same category or Total column.
+- "Percentage of total for 2011": each 2011 count-category total divided by the 2011 grand total across all five categories; the Total column must show 100%.
+
+Store calculated results as numeric values or valid Excel formulas. Display percentage rows to whole-percent precision using an Excel percentage number format without rounding the underlying values. If a denominator is zero, leave the corresponding percentage result blank.
+
+Keep the original animal order, Mammal/Primate grouping, table title, source numbers, year labels, footnote and multi-level header hierarchy. "No anaesthesia" is a standalone category; the "Type of anaesthesia" group includes only the four anaesthesia-type columns. Keep the newly added Total column outside that group and preserve meaningful merged headers. Do not introduce additional worksheets or unrelated content.
+
+Preserve the title and footnote text verbatim. Their decorative merge widths are flexible and need not extend across the new Total column. The Total header may be vertically merged across the header levels or left unmerged, provided its independent column meaning is clear. Show its Total label once within the existing header levels. Font family, font size, text/fill colors, borders and column widths are flexible. Keep the required numeric types, percentage display precision and semantic relationships.
+
+Save the completed workbook as submission.xlsx.

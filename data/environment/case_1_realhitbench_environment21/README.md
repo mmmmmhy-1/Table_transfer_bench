@@ -39,6 +39,7 @@ The generated workbooks reproduce original data and the important semantic heade
 
 - **Main / Discovery:** pass only `input.xlsx` and `instruction.txt` to the agent. Prompts state business requirements and output invariants without revealing unnecessary coordinates, original-data totals or sample answers.
 - **Guided diagnostic:** use `instruction_guided.txt` *instead of*, never together with, the Discovery prompt; report results separately. Do not add guided examples to the main leaderboard.
-- **Gold / Evaluator:** reference layout is illustrative where the main prompt does not prescribe a location; this case's evaluator checks specified business semantics, values and required merges, including supported uncached numeric formulas.
+- **Shared output contract:** Guided adds source locations to exactly the same Discovery business instruction. Fonts, sizes, colors, borders and decorative title/footnote merge widths are flexible. The standalone Total header may be vertically merged or left unmerged.
+- **Gold / Evaluator:** preserve original semantic header groups and keep Total outside Type of anaesthesia. Values, row order, hierarchy, source text and percentage precision remain strict. Gold's title/footnote merge widths are illustrative. The evaluator accepts supported uncached numeric formulas.
 
 See [agentic prompt authoring](../../../docs/instruction_authoring_v2.1_zh.md). These public examples must not be counted in a held-out test set.

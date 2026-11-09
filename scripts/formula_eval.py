@@ -1,7 +1,7 @@
 """Small, safe formula evaluator for the benchmark's deterministic Excel checks.
 
 Supports literals, same-sheet A1 references/ranges, + - * / ^ %, comparisons,
-SUM, COUNT, COUNTA, ABS, MIN, MAX, IF, IFERROR. Rejects external links,
+SUM, COUNT, COUNTA, ABS, MIN, MAX, IF, IFERROR, scalar ISNUMBER. Rejects external links,
 unknown functions, circular formulas, unsupported Excel syntax. No Python eval.
 Use as verification fallback when xlsx formula caches are missing.
 """
@@ -193,6 +193,8 @@ class SpreadsheetFormulaEvaluator:
                 except (FormulaError,ArithmeticError):return self._value(node[2][1])
             vals=list(self._flatten([self._value(arg) for arg in node[2]]))
             numeric=[v for v in vals if isinstance(v,(int,float)) and not isinstance(v,bool)]
+            if name=='ISNUMBER' and len(vals)==1:
+                return isinstance(vals[0],(int,float)) and not isinstance(vals[0],bool)
             if name=='SUM':return sum(numeric)
             if name=='COUNT':return len(numeric)
             if name=='COUNTA':return sum(v is not None and v!='' for v in vals)

@@ -95,7 +95,19 @@
     "reference_gold_success": 1,
     "mutated_gold_success": 0,
     "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
-    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas"
+    "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas",
+    "checker_version": "environment21_case_v4_layout_equivalence",
+    "instruction_contract_revision": "environment21_layout_v2_2026-11-09",
+    "required_header_merges": [
+      "A4:A5",
+      "B4:B5",
+      "C4:F4"
+    ],
+    "optional_header_merges": [
+      "G4:G5"
+    ],
+    "decorative_merge_policy": "Title/footnote merge widths and Total vertical merge are optional; preserve text and independent header semantics",
+    "track_contract_policy": "Guided appends exactly the Discovery business contract and adds source locations only"
   },
   "publication_policy": "Example with public gold; never held-out test",
   "domain": "environment",

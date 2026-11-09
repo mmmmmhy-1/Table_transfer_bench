@@ -142,9 +142,208 @@
           },
           "subtype": {
             "type": "string"
+          },
+          "table_contract": {
+            "$ref": "#/$defs/op6_table_contract"
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "operation": {
+                  "const": "OP6"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "subtype",
+                "table_contract"
+              ],
+              "properties": {
+                "subtype": {
+                  "enum": [
+                    "J1",
+                    "J2",
+                    "J3",
+                    "J4",
+                    "J5",
+                    "J6",
+                    "J7"
+                  ]
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J1"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "join"
+                          },
+                          "keys": {
+                            "maxItems": 1
+                          },
+                          "cardinality": {
+                            "const": "one_to_one"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J2"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "join"
+                          },
+                          "keys": {
+                            "maxItems": 1
+                          },
+                          "cardinality": {
+                            "enum": [
+                              "one_to_many",
+                              "many_to_one"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J3"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "join"
+                          },
+                          "keys": {
+                            "maxItems": 1
+                          },
+                          "cardinality": {
+                            "const": "many_to_many"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J4"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "join"
+                          },
+                          "keys": {
+                            "minItems": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J5"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "append_rows"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J6"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "partition_rows"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "subtype": {
+                        "const": "J7"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "table_contract": {
+                        "properties": {
+                          "kind": {
+                            "const": "split_columns"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
       }
     },
     "dependency_edges": {
@@ -260,6 +459,10 @@
         }
       },
       "additionalProperties": false
+    },
+    "operation_taxonomy_revision": {
+      "type": "string",
+      "description": "Optional taxonomy addendum identifier, e.g. 2.2-op6-v2."
     }
   },
   "additionalProperties": true,
@@ -273,6 +476,370 @@
         "OP5",
         "OP6",
         "OP7"
+      ]
+    },
+    "op6_table_contract": {
+      "type": "object",
+      "required": [
+        "kind",
+        "input_tables",
+        "output_tables",
+        "duplicate_policy",
+        "null_policy",
+        "order_policy"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "join",
+            "append_rows",
+            "partition_rows",
+            "split_columns"
+          ]
+        },
+        "input_tables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_tables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "duplicate_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "null_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "order_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": [
+              "left",
+              "right"
+            ],
+            "properties": {
+              "left": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "right": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "join_type": {
+          "enum": [
+            "inner",
+            "left",
+            "right",
+            "full"
+          ]
+        },
+        "cardinality": {
+          "enum": [
+            "one_to_one",
+            "one_to_many",
+            "many_to_one",
+            "many_to_many"
+          ]
+        },
+        "unmatched_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "column_alignment": {
+          "enum": [
+            "by_name",
+            "explicit_mapping"
+          ]
+        },
+        "schema_policy": {
+          "enum": [
+            "strict",
+            "union",
+            "intersection",
+            "explicit_mapping"
+          ]
+        },
+        "missing_column_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "column_mapping": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "partition_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "routing_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "row_coverage": {
+          "enum": [
+            "exactly_once",
+            "specified_overlap"
+          ]
+        },
+        "unassigned_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "overlap_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "key_columns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_columns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "column_groups": {
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "reconstruction_policy": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "join"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "keys",
+              "join_type",
+              "cardinality",
+              "unmatched_policy"
+            ],
+            "properties": {
+              "input_tables": {
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "output_tables": {
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "append_rows"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "column_alignment",
+              "schema_policy",
+              "missing_column_policy"
+            ],
+            "properties": {
+              "input_tables": {
+                "minItems": 2
+              },
+              "output_tables": {
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "partition_rows"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "partition_keys",
+              "routing_policy",
+              "row_coverage",
+              "unassigned_policy"
+            ],
+            "properties": {
+              "input_tables": {
+                "maxItems": 1
+              },
+              "output_tables": {
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "split_columns"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "key_columns",
+              "source_columns",
+              "column_groups",
+              "reconstruction_policy"
+            ],
+            "properties": {
+              "input_tables": {
+                "maxItems": 1
+              },
+              "output_tables": {
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "column_alignment": {
+                "const": "explicit_mapping"
+              }
+            },
+            "required": [
+              "column_alignment"
+            ]
+          },
+          "then": {
+            "required": [
+              "column_mapping"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "schema_policy": {
+                "const": "explicit_mapping"
+              }
+            },
+            "required": [
+              "schema_policy"
+            ]
+          },
+          "then": {
+            "required": [
+              "column_mapping"
+            ],
+            "properties": {
+              "column_alignment": {
+                "const": "explicit_mapping"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "row_coverage": {
+                "const": "specified_overlap"
+              }
+            },
+            "required": [
+              "row_coverage"
+            ]
+          },
+          "then": {
+            "required": [
+              "overlap_policy"
+            ]
+          }
+        }
       ]
     }
   }

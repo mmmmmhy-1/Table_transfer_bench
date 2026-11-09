@@ -1,0 +1,24 @@
+name: Check isolated agent baseline
+on:
+  pull_request:
+    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', '.github/workflows/agent-baseline.yml']
+  push:
+    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', '.github/workflows/agent-baseline.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: docker build -t ttb-agent:0.1 -f benchmark/Dockerfile benchmark
+      - run: python -m unittest benchmark.test_baseline benchmark.test_evaluator_contract benchmark.test_environment_layout benchmark.test_op6_contracts -v
+        env:
+          TTB_DOCKER_TEST: '1'
+      - run: python scripts/validate_annotations.py
+      - run: python scripts/check_public_cases.py

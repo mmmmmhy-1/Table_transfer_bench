@@ -11,4 +11,6 @@ Store calculated results as numeric values or valid Excel formulas. Display perc
 
 Keep the original animal order, Mammal/Primate grouping, table title, source numbers, year labels, footnote and multi-level header hierarchy. "No anaesthesia" is a standalone category; the "Type of anaesthesia" group includes only the four anaesthesia-type columns. Keep the newly added Total column outside that group and preserve meaningful merged headers. Do not introduce additional worksheets or unrelated content.
 
+Preserve the title and footnote text verbatim. Their decorative merge widths are flexible and need not extend across the new Total column. The Total header may be vertically merged across the header levels or left unmerged, provided its independent column meaning is clear. Show its Total label once within the existing header levels. Font family, font size, text/fill colors, borders and column widths are flexible. Keep the required numeric types, percentage display precision and semantic relationships.
+
 Save the completed workbook as submission.xlsx.

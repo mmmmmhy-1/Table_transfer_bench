@@ -2,6 +2,8 @@
 
 The canonical dataset lives under [data/](../data/README.md), grouped by **domain then case**; this directory is only a navigation page.
 
+[OP6 contract examples](op6_contracts.json) illustrate join, append, row partition and column splitting metadata. They contain no new benchmark workbooks and do not increase the released case count. See the [V2.2 addendum](../docs/op6_table_integration_v2.2_zh.md).
+
 - [Environment / case_1_realhitbench_environment21 — OP2 + OP3](../data/environment/case_1_realhitbench_environment21/README.md) — original dataset: RealHiTBench environment21 (public example)
 
 - [Labor / case_1_realhitbench_labor43 — OP1 + OP2 + OP7](../data/labor/case_1_realhitbench_labor43/README.md) — original dataset: RealHiTBench labor43 (public review example)

@@ -139,10 +139,11 @@
     "primary_metric": "Hard Task Success",
     "reference_gold_success": 1,
     "mutated_gold_success": 0,
-    "checker_version": "labor43_case_v2",
+    "checker_version": "labor43_case_v3",
     "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
     "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas",
-    "structural_metric": "Merged range correctness and preservation of semantic grouping (45 output merged ranges)"
+    "structural_metric": "Merged range correctness and preservation of semantic grouping (45 output merged ranges)",
+    "singleton_merge_policy": "Ignore one-cell merge ranges; retain required semantic multi-cell groups"
   },
   "publication_policy": "Public demonstration with disclosed gold; never use for unseen evaluation",
   "taxonomy": {

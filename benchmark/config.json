@@ -1,0 +1,18 @@
+{
+  "base_url": "https://llmapi.paratera.com/v1",
+  "models": ["Qwen3.6-27B", "MiniMax-M2.5", "Qwen3.7-Max"],
+  "tracks": ["discovery", "guided"],
+  "repeats": 3,
+  "workers": 6,
+  "image": "ttb-agent:0.1",
+  "temperature": 0.6,
+  "max_tokens_per_response": 8192,
+  "max_turns": 50,
+  "max_total_tokens": 500000,
+  "episode_timeout_seconds": 1200,
+  "api_timeout_seconds": 180,
+  "tool_timeout_seconds": 60,
+  "max_observation_chars": 24000,
+  "max_api_attempts": 3,
+  "reasoning_policy": "provider_default_no_override"
+}
