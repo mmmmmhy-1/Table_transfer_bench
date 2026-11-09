@@ -35,6 +35,10 @@ def evaluate(path):
         try: actual=calc.cell(coord)
         except Exception as exc:
             errors.append(f'{coord}: unevaluable formula: {exc}');continue
+        # Year headings have the same meaning as exact numeric or text labels.
+        if row == 2 and col in (2,3,4,5) and expected in ('2014','2015'):
+            if isinstance(actual,(int,float)) and not isinstance(actual,bool) and actual == int(expected):
+                actual = expected
         if isinstance(expected,(int,float)) and not isinstance(expected,bool):
             if not isinstance(actual,(int,float)) or isinstance(actual,bool) or not math.isclose(actual,expected,rel_tol=1e-10,abs_tol=1e-12):
                 errors.append(f'{coord}: expected {expected!r}, got {actual!r}')

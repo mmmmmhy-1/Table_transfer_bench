@@ -106,7 +106,9 @@
     "source_data_verified_locally": true,
     "prompt_contract": "Discovery business requirements; any required output merge and header relation must be explicitly stated; equivalence where location unspecified",
     "uncached_formula_policy": "Safely calculate restricted supported same-sheet formulas; reject unevaluable/incorrect formulas",
-    "note_key_layout": "Preserved contents and order below data, coordinates and decorative merge widths may vary"
+    "note_key_layout": "Preserved contents and order below data, coordinates and decorative merge widths may vary",
+    "checker_version": "business13_case_v3",
+    "year_header_storage_policy": "Exact 2014/2015 heading labels may be text or numeric years"
   },
   "publication_policy": "Public example only, not eligible for held-out Test",
   "prompt_mode": "discovery",

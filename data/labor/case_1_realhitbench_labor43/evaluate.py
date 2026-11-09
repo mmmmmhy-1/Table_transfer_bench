@@ -19,7 +19,9 @@ def evaluate(path):
     w=wb.active
     if w.max_row!=c['used_rows'] or w.max_column!=c['used_columns']:
         errors.append('Workbook dimensions differ from specified schema')
-    expected=set(c['merged_ranges']);actual={str(x) for x in w.merged_cells.ranges}
+    expected=set(c['merged_ranges'])
+    actual={str(x) for x in w.merged_cells.ranges
+            if x.min_row != x.max_row or x.min_col != x.max_col}
     if expected!=actual:errors.append('Merge mismatch: missing '+str(sorted(expected-actual)[:10])+' extra '+str(sorted(actual-expected)[:10]))
     calc=SpreadsheetFormulaEvaluator(w,values.active)
     for row in range(1,max(c['used_rows'],w.max_row)+1):

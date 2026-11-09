@@ -6,6 +6,8 @@
 - [V2.2 Annotation and Construction SOP — 中文](annotation_guidelines_v2.2_zh.md): case-by-case labeling procedure, boundary decisions, metadata fields, review checklists and rejection rules.
 - [Agentic task instruction authoring / Discovery–Guided policy — 中文](instruction_authoring_v2.2_zh.md): leakage checks, necessary business constraints, prompt/Gold/Evaluator alignment, and public-case examples.
 - [Metadata JSON Schema](../schemas/case_metadata.schema.json): machine-readable validation contract for each case.
+- [OP6 table integration and decomposition — 中文](op6_table_integration_v2.2_zh.md): joins, row consolidation, row/column splitting, coverage and reconstruction checks; keeps OP7 cell/hierarchy transformations separate.
+- [Docker agent baseline — 中文](agent_baseline_zh.md): reproducible tool environment, pilot records and evaluator revision policies.
 - [Dataset case naming and organization](../data/README.md): `data/<domain>/case_<N>_<source-slug>/`.
 
 **Note for international collaborators:** labels and file paths use English identifiers, while the normative research-workflow text is currently maintained in Chinese. An English translation may be added later; do not silently diverge from the V2.2 scope.

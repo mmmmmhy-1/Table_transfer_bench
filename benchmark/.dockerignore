@@ -1,0 +1,4 @@
+*
+!Dockerfile
+!view_xlsx.py
+!requirements-docker.lock

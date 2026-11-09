@@ -17,6 +17,38 @@ CATALOG = ROOT / "data" / "catalog.json"
 SCHEMA = ROOT / "schemas" / "case_metadata.schema.json"
 
 
+def validate_table_contract(node):
+    """Cross-field checks not expressible by the annotation JSON Schema."""
+    if node.get('operation') != 'OP6':
+        return []
+    contract = node.get('table_contract', {})
+    if not isinstance(contract, dict):
+        return ['OP6 table_contract must be an object']
+    errors = []
+    if contract.get('kind') == 'split_columns':
+        groups = contract.get('column_groups', {})
+        if not isinstance(groups, dict) or any(not isinstance(fields, list) or any(not isinstance(field, str) for field in fields) for fields in groups.values()):
+            return ['OP6 split_columns column_groups must map table names to field-name lists']
+        outputs = set(contract.get('output_tables', []))
+        if set(groups) != outputs:
+            errors.append('OP6 split_columns column_groups must name every output table exactly')
+        keys = set(contract.get('key_columns', []))
+        payload = [field for columns in groups.values() for field in columns]
+        if keys.intersection(payload):
+            errors.append('OP6 split_columns key columns belong in key_columns, not payload groups')
+        if len(payload) != len(set(payload)):
+            errors.append('OP6 split_columns non-key columns must occur exactly once')
+        if keys.union(payload) != set(contract.get('source_columns', [])):
+            errors.append('OP6 split_columns must preserve every source column without inventing columns')
+    if contract.get('kind') == 'join':
+        pairs = contract.get('keys', [])
+        for side in ('left', 'right'):
+            columns = [pair.get(side) for pair in pairs if isinstance(pair, dict)]
+            if len(columns) != len(set(columns)):
+                errors.append('OP6 join repeats a key field on the ' + side + ' side')
+    return errors
+
+
 def main() -> int:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)
@@ -83,6 +115,10 @@ def main() -> int:
         if "S0" in meta.get("structure_tags", []) and len(meta["structure_tags"]) > 1:
             errors.append(f"{path}: S0 flat must not coexist with S1-S4")
         nodes = meta.get("operation_nodes", [])
+        if 'OP6' in meta.get('operations', []) and not any(n.get('operation') == 'OP6' for n in nodes):
+            errors.append(f'{path}: OP6 requires an operation node and a table_contract')
+        for node in nodes:
+            errors.extend(f'{path}: {err}' for err in validate_table_contract(node))
         if nodes:
             ids = [n["id"] for n in nodes]
             if len(ids) != len(set(ids)):

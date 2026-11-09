@@ -17,13 +17,26 @@ def evaluate(path):
     errors=[]
     if book.sheetnames!=gold.sheetnames:errors.append('Original sheet name/count must be preserved')
     w=book.active;g=gold.active;calc=SpreadsheetFormulaEvaluator(w,cached.active)
-    if w.max_column!=7:errors.append('Expected original fields plus rightmost Total')
-    if w.max_row!=32:errors.append('Unexpected row count')
-    required={'A4:A5','B4:B5','C4:F4','G4:G5','A1:G1','A32:G32'}
+    # Blank styled cells and decorative merge widths are not extra data fields.
+    populated=[cell for row in w.iter_rows() for cell in row if cell.value is not None]
+    content_columns=max((cell.column for cell in populated),default=0)
+    content_rows=max((cell.row for cell in populated),default=0)
+    if content_columns!=7:errors.append('Expected original fields plus rightmost Total')
+    if content_rows!=32:errors.append('Unexpected populated row count')
+    required={'A4:A5','B4:B5','C4:F4'}
     actual={str(x) for x in w.merged_cells.ranges}
-    if not required.issubset(actual):errors.append('Incorrect original/group/Total header or title/footnote merges')
-    for row in range(1,max(32,w.max_row)+1):
-        for col in range(1,max(7,w.max_column)+1):
+    if not required.issubset(actual):errors.append('Incorrect original semantic header merges')
+    if [w['G4'].value,w['G5'].value] not in (['Total',None],[None,'Total']):
+        errors.append('Standalone Total must be labelled once within the existing header levels')
+    for merged in w.merged_cells.ranges:
+        touches_total_header=(merged.min_col<=7<=merged.max_col and merged.min_row<=5 and merged.max_row>=4)
+        multi_cell=(merged.min_row!=merged.max_row or merged.min_col!=merged.max_col)
+        if touches_total_header and multi_cell and str(merged)!='G4:G5':
+            errors.append('Total header must remain independent of other headers and data rows')
+    for row in range(1,max(32,content_rows)+1):
+        for col in range(1,max(7,content_columns)+1):
+            if col==7 and row in (4,5):
+                continue  # The standalone label may occupy either header level.
             coordinate=w.cell(row,col).coordinate
             need=g.cell(row,col).value if row<=32 and col<=7 else None
             try:have=calc.cell(coordinate)

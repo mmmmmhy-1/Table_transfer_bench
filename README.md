@@ -36,12 +36,18 @@ python scripts/validate_annotations.py
 | OP3 | Generate Rows | Summary and generated records |
 | OP4 | Field Decomposition | Extract components of compound fields |
 | OP5 | Field Normalization | Normalize types, formats, units, and categories |
-| OP6 | Relational Join | Key-based integration of tables |
+| OP6 | Table Integration & Decomposition | Key-based joins, row-wise consolidation, and rule-based row/column table splitting |
 | OP7 | Structural Transformation | Semantics-preserving merge/group hierarchy and multi-level header transformation |
 
 We annotate table structure separately (**S0** flat, **S1** multi-level column headers, **S2** hierarchical row headers, **S3** merged cells, **S4** irregular layouts). Scale is measured continuously, not assigned fixed Small/Medium bins. Compositions and their dependencies are explicitly recorded.
 
 OP7 is distinct from input structure tags (S0–S4). Only an explicitly requested semantic merge/header/hierarchy transformation earns OP7; retaining pre-existing structure does not. The previous V2.1 construction documents remain in `docs/` as historical references.
+
+The [OP6 contract addendum (中文)](docs/op6_table_integration_v2.2_zh.md) retains J1–J4 and adds J5 append rows, J6 partition rows, and J7 split columns. Cell merge/unmerge remains OP7. New OP6 nodes require a machine-checkable `table_contract`; [annotation examples](examples/op6_contracts.json) are not additional released cases.
+
+## Isolated agent pilot
+
+A lightweight Docker runner exposes `view_xlsx`, `bash`, and `submit`, records tool trajectories, and evaluates outputs outside the agent container. It is an independent scaffold inspired by SpreadsheetBench 2. See the [setup and experiment protocol (中文)](docs/agent_baseline_zh.md).
 
 ## Dataset organization
 

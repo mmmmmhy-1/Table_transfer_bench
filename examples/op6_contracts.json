@@ -1,0 +1,73 @@
+{
+  "status": "annotation_examples_only_not_benchmark_cases",
+  "taxonomy_revision": "2.2-op6-v2",
+  "nodes": [
+    {
+      "id": "join_sales_cost",
+      "operation": "OP6",
+      "subtype": "J4",
+      "table_contract": {
+        "kind": "join",
+        "input_tables": ["sales", "costs"],
+        "output_tables": ["sales_with_cost"],
+        "keys": [{"left": "product_id", "right": "product_id"}, {"left": "year", "right": "year"}],
+        "join_type": "left",
+        "cardinality": "many_to_one",
+        "unmatched_policy": "Retain every sales occurrence; missing costs remain blank",
+        "duplicate_policy": "Keep duplicate sales occurrences; reject duplicate product_id/year cost keys",
+        "null_policy": "Null keys do not match; missing cost is not zero",
+        "order_policy": "Preserve original sales order"
+      }
+    },
+    {
+      "id": "append_regional_sales",
+      "operation": "OP6",
+      "subtype": "J5",
+      "table_contract": {
+        "kind": "append_rows",
+        "input_tables": ["east_sales", "west_sales"],
+        "output_tables": ["all_sales"],
+        "column_alignment": "by_name",
+        "schema_policy": "union",
+        "missing_column_policy": "Fill missing optional fields with blank, never zero",
+        "duplicate_policy": "Preserve every record occurrence; identical rows remain duplicated",
+        "null_policy": "Retain source blanks and distinguish blank from zero",
+        "order_policy": "East records then West records; preserve order within each table"
+      }
+    },
+    {
+      "id": "partition_sales",
+      "operation": "OP6",
+      "subtype": "J6",
+      "table_contract": {
+        "kind": "partition_rows",
+        "input_tables": ["all_sales"],
+        "output_tables": ["east_output", "west_output"],
+        "partition_keys": ["region"],
+        "routing_policy": "region=East goes to east_output; region=West goes to west_output",
+        "row_coverage": "exactly_once",
+        "unassigned_policy": "Reject input with missing or unknown region; never silently drop rows",
+        "duplicate_policy": "Preserve duplicate record occurrences in their assigned output",
+        "null_policy": "Blank region is an input-contract error",
+        "order_policy": "Preserve original relative order within each output"
+      }
+    },
+    {
+      "id": "split_sales_columns",
+      "operation": "OP6",
+      "subtype": "J7",
+      "table_contract": {
+        "kind": "split_columns",
+        "input_tables": ["all_sales"],
+        "output_tables": ["sale_dimensions", "sale_measures"],
+        "key_columns": ["record_id"],
+        "source_columns": ["record_id", "region", "product_id", "amount", "quantity"],
+        "column_groups": {"sale_dimensions": ["region", "product_id"], "sale_measures": ["amount", "quantity"]},
+        "reconstruction_policy": "Join on unique non-null source record_id to recover every original record and field",
+        "duplicate_policy": "Repeated business facts with different record_id are preserved; duplicate record_id is invalid",
+        "null_policy": "record_id cannot be blank; payload blanks are preserved",
+        "order_policy": "Preserve source record_id order in both outputs"
+      }
+    }
+  ]
+}
