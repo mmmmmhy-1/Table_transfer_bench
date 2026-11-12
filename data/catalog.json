@@ -86,6 +86,26 @@
       "path": "data/science/case_1_realhitbench_science58",
       "case_number": 1,
       "case_slug": "case_1_realhitbench_science58"
+    },
+    {
+      "case_id": "TTB_V2_2_DFT_JTS0402_2014_OP7_OP2_001",
+      "domain": "transport",
+      "source_dataset": "UK Department for Transport Journey Time Statistics",
+      "source_table_id": "JTS0402-2014",
+      "source_family_id": "DfT_JTS0402_2014",
+      "operations": [
+        "OP7",
+        "OP2"
+      ],
+      "structure_tags": [
+        "S3",
+        "S4"
+      ],
+      "split": "example",
+      "release_role": "public_demo",
+      "path": "data/transport/case_1_dft_jts0402_2014",
+      "case_number": 1,
+      "case_slug": "case_1_dft_jts0402_2014"
     }
   ]
 }

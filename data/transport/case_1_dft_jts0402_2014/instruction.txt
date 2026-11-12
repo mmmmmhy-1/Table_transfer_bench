@@ -1,0 +1,37 @@
+Task: Rebuild the hierarchical headers of the attached `JTS0402-2014.xlsx` workbook, and derive a signed travel-time comparison column. Submit one completed XLSX workbook containing exactly one worksheet.
+
+Context: This source is the UK Department for Transport's 2014 table of travel-time and accessibility indicators for primary schools in England, by local authority. In the input worksheet, row 6 contains indicator IDs (PS001-PS004 and PS101-PS127), row 7 contains abbreviated field names, and rows 8 onward contain 361 data records.
+
+1. Preserve the original data
+- Retain all 361 source records in their original order, and retain all 31 original fields and their underlying numeric/text values without rounding, aggregation, deletion or reordering.
+- Keep the four geography fields at the left: Region, LA_Code, LA_Name, PS_pop (population aged 5-10). Preserve LA codes and names; do not invent county/district parent-child relationships or sum records from overlapping administrative levels.
+- The original 31 fields must remain in their original column order. Only one new derived column may be added at the far right, making 32 columns total.
+
+2. Reconstruct meaningful, genuinely merged three-level Excel column headers
+- For the 27 primary-school accessibility indicators, divide columns in the original order into three top-level transport modes, nine original columns each: Public transport / walking (`PSPT`), Cycling (`PSCyc`), and Car (`PSCar`).
+- Within each transport mode, form the following second-level groups:
+  (a) `Average minimum journey time (min)` -- 1 field, suffix `t`, such as `PSPTt`.
+  (b) `Origin indicator: accessible schools (mean number)` -- 4 fields, suffix `n`, with 15/30/45/60-minute thresholds.
+  (c) `Destination indicator: children with access (%)` -- 4 fields, suffix `pct`, with 15/30/45/60-minute thresholds.
+- For group (a), the third-level label is `Nearest primary school`. For groups (b) and (c), the third-level labels, in their original order, are `Within 15 min`, `Within 30 min`, `Within 45 min`, `Within 60 min`.
+- Each of the four geography field labels spans all three header levels vertically. Use actual Excel merged-cell ranges for every semantic grouping, not merely decorative styles or repeated text.
+- Retain a traceable mapping from all 31 source fields to their original short field codes and PS indicator IDs; Excel header comments are acceptable. Do not replace a field with an incorrectly inferred meaning.
+
+3. Region display and formatting
+- Merge contiguous runs of identical Region labels vertically, preserving the region name at the first row of each run; leave all other fields in every row intact. Do not merge any noncontiguous regions.
+- Preserve existing local-authority label text, ordering and discernible indentation. Percentages such as 94 must remain stored numerically as 94, even when displayed as `94%`: do NOT apply Excel's normal percentage format to the unchanged value 94 (which would display 9400%).
+
+4. Add exactly ONE derived column at the far right, under its own header group
+- Top-level header: `Derived comparison`.
+- Second-level header: `Average minimum journey time gap (min)`.
+- Third-level header: `Public transport / walking - Car`.
+- For each of the 361 original records, subtract the Car minimum journey-time indicator (`PSCart`, source indicator PS119) from the Public transport / walking minimum journey-time indicator (`PSPTt`, source indicator PS101):
+  `Travel-time gap (minutes) = PSPTt - PSCart`.
+- Retain the sign of the result, with zero permitted. This is a difference in minutes, NOT a ratio or percentage, and NOT the difference between counts of reachable schools or accessibility rates.
+- Store these 361 derived values as numeric Excel formula results where possible, referencing the two corresponding cells in the same output row. Do not alter the two input indicator values.
+- Do not insert summary rows or additional comparison columns.
+
+5. Output contract
+- Exactly one worksheet. Put a concise title above the table if useful; use three consecutive header rows followed immediately by all 361 original records. Keep numeric data machine-readable.
+- The final schema must consist of the original 31 fields, represented through the three-level header hierarchy, plus the single derived comparison column. Ensure all merges, values, comments/mapping and formulas are valid in Excel.
+- Return only the completed `.xlsx` file; no prose report, charts or supplementary workbook.

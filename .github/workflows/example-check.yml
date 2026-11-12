@@ -16,6 +16,7 @@ on:
       - 'data/catalog.json'
       - 'data/**/metadata.json'
       - 'data/science/**'
+      - 'data/transport/**'
       - 'requirements.txt'
       - 'data/environment/case_1_realhitbench_environment21/evaluate.py'
       - 'data/business/case_1_realhitbench_business13/evaluate.py'
@@ -50,6 +51,10 @@ jobs:
         run: python data/science/case_1_realhitbench_science58/verify_package.py
       - name: Regression checks for Science58 evaluator
         run: python data/science/case_1_realhitbench_science58/test_case.py
+      - name: Verify DfT JTS0402 OP7+OP2 numeric and structural Gold
+        run: python data/transport/case_1_dft_jts0402_2014/evaluate.py data/transport/case_1_dft_jts0402_2014/gold_output.xlsx
+      - name: Regression checks for JTS0402 evaluator
+        run: python data/transport/case_1_dft_jts0402_2014/test_case.py
       - name: Regression checks for public case evaluators
         run: python scripts/check_public_cases.py
       - name: Commit generated XLSX artifacts if changed

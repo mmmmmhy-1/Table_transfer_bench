@@ -1,0 +1,373 @@
+{
+  "source_file": "JTS0402-2014.xlsx",
+  "mapping": [
+    {
+      "column": "A",
+      "indicator_id": "PS001",
+      "source_field": "Region",
+      "level_1": "Geography",
+      "level_2": "",
+      "level_3": "",
+      "source_basis": "original source workbook"
+    },
+    {
+      "column": "B",
+      "indicator_id": "PS002",
+      "source_field": "LA_Code",
+      "level_1": "Geography",
+      "level_2": "",
+      "level_3": "",
+      "source_basis": "original source workbook"
+    },
+    {
+      "column": "C",
+      "indicator_id": "PS003",
+      "source_field": "LA_Name",
+      "level_1": "Geography",
+      "level_2": "",
+      "level_3": "",
+      "source_basis": "original source workbook"
+    },
+    {
+      "column": "D",
+      "indicator_id": "PS004",
+      "source_field": "PS_pop",
+      "level_1": "Geography",
+      "level_2": "",
+      "level_3": "",
+      "source_basis": "original source workbook"
+    },
+    {
+      "column": "E",
+      "indicator_id": "PS101",
+      "source_field": "PSPTt",
+      "level_1": "Public transport / walking",
+      "level_2": "Average minimum journey time (min)",
+      "level_3": "Nearest primary school",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "F",
+      "indicator_id": "PS102",
+      "source_field": "PSPT15n",
+      "level_1": "Public transport / walking",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "G",
+      "indicator_id": "PS103",
+      "source_field": "PSPT30n",
+      "level_1": "Public transport / walking",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "H",
+      "indicator_id": "PS104",
+      "source_field": "PSPT45n",
+      "level_1": "Public transport / walking",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "I",
+      "indicator_id": "PS105",
+      "source_field": "PSPT60n",
+      "level_1": "Public transport / walking",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "J",
+      "indicator_id": "PS106",
+      "source_field": "PSPT15pct",
+      "level_1": "Public transport / walking",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "K",
+      "indicator_id": "PS107",
+      "source_field": "PSPT30pct",
+      "level_1": "Public transport / walking",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "L",
+      "indicator_id": "PS108",
+      "source_field": "PSPT45pct",
+      "level_1": "Public transport / walking",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "M",
+      "indicator_id": "PS109",
+      "source_field": "PSPT60pct",
+      "level_1": "Public transport / walking",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "N",
+      "indicator_id": "PS110",
+      "source_field": "PSCyct",
+      "level_1": "Cycling",
+      "level_2": "Average minimum journey time (min)",
+      "level_3": "Nearest primary school",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "O",
+      "indicator_id": "PS111",
+      "source_field": "PSCyc15n",
+      "level_1": "Cycling",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "P",
+      "indicator_id": "PS112",
+      "source_field": "PSCyc30n",
+      "level_1": "Cycling",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "Q",
+      "indicator_id": "PS113",
+      "source_field": "PSCyc45n",
+      "level_1": "Cycling",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "R",
+      "indicator_id": "PS114",
+      "source_field": "PSCyc60n",
+      "level_1": "Cycling",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "S",
+      "indicator_id": "PS115",
+      "source_field": "PSCyc15pct",
+      "level_1": "Cycling",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "T",
+      "indicator_id": "PS116",
+      "source_field": "PSCyc30pct",
+      "level_1": "Cycling",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "U",
+      "indicator_id": "PS117",
+      "source_field": "PSCyc45pct",
+      "level_1": "Cycling",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "V",
+      "indicator_id": "PS118",
+      "source_field": "PSCyc60pct",
+      "level_1": "Cycling",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "W",
+      "indicator_id": "PS119",
+      "source_field": "PSCart",
+      "level_1": "Car",
+      "level_2": "Average minimum journey time (min)",
+      "level_3": "Nearest primary school",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "X",
+      "indicator_id": "PS120",
+      "source_field": "PSCar15n",
+      "level_1": "Car",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "Y",
+      "indicator_id": "PS121",
+      "source_field": "PSCar30n",
+      "level_1": "Car",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "Z",
+      "indicator_id": "PS122",
+      "source_field": "PSCar45n",
+      "level_1": "Car",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AA",
+      "indicator_id": "PS123",
+      "source_field": "PSCar60n",
+      "level_1": "Car",
+      "level_2": "Origin indicator: accessible schools (mean number)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AB",
+      "indicator_id": "PS124",
+      "source_field": "PSCar15pct",
+      "level_1": "Car",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 15 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AC",
+      "indicator_id": "PS125",
+      "source_field": "PSCar30pct",
+      "level_1": "Car",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 30 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AD",
+      "indicator_id": "PS126",
+      "source_field": "PSCar45pct",
+      "level_1": "Car",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 45 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AE",
+      "indicator_id": "PS127",
+      "source_field": "PSCar60pct",
+      "level_1": "Car",
+      "level_2": "Destination indicator: children with access (%)",
+      "level_3": "Within 60 min",
+      "source_basis": "2014 DfT notes + source field code pattern"
+    },
+    {
+      "column": "AF",
+      "indicator_id": null,
+      "source_field": "derived_PSPTt_minus_PSCart",
+      "level_1": "Derived comparison",
+      "level_2": "Average minimum journey time gap (min)",
+      "level_3": "Public transport / walking - Car",
+      "formula": "PSPTt - PSCart",
+      "source_field_references": [
+        {
+          "source_field": "PSPTt",
+          "indicator_id": "PS101",
+          "column": "E"
+        },
+        {
+          "source_field": "PSCart",
+          "indicator_id": "PS119",
+          "column": "W"
+        }
+      ],
+      "source_basis": "derived from two unchanged primary-school accessibility statistics (minutes)"
+    }
+  ],
+  "region_blocks": [
+    {
+      "name": "North East",
+      "start": 7,
+      "end": 19,
+      "count": 13
+    },
+    {
+      "name": "North West",
+      "start": 20,
+      "end": 62,
+      "count": 43
+    },
+    {
+      "name": "Yorkshire and The Humber",
+      "start": 63,
+      "end": 86,
+      "count": 24
+    },
+    {
+      "name": "East Midlands",
+      "start": 87,
+      "end": 131,
+      "count": 45
+    },
+    {
+      "name": "West Midlands",
+      "start": 132,
+      "end": 165,
+      "count": 34
+    },
+    {
+      "name": "East",
+      "start": 166,
+      "end": 217,
+      "count": 52
+    },
+    {
+      "name": "London",
+      "start": 218,
+      "end": 252,
+      "count": 35
+    },
+    {
+      "name": "South East",
+      "start": 253,
+      "end": 326,
+      "count": 74
+    },
+    {
+      "name": "South West",
+      "start": 327,
+      "end": 367,
+      "count": 41
+    }
+  ],
+  "reference_urls": [
+    "https://www.gov.uk/government/statistics/journey-time-statistics-access-2014",
+    "https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts",
+    "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/488365/journey-time-statistics-access-to-services-notes-and-guidance.pdf"
+  ],
+  "notes": {
+    "origin": "number of accessible destinations, weighted mean across geography; count up to 10",
+    "destination": "share of service user population (primary-school-aged children 5-10) with at least one school accessible",
+    "minimum": "area-level population-weighted average of minimum journey times; not the minimum of all residents",
+    "percentage": "source holds percentage points 0-100; literal % display preserves source storage"
+  }
+}

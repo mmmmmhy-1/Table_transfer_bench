@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "operations": [
+    "OP7",
+    "OP2"
+  ],
+  "input_file": "input.xlsx",
+  "gold_file": "gold_output.xlsx",
+  "data_rows": 361,
+  "original_columns": 31,
+  "output_columns": 32,
+  "original_data_cells_preserved_A_to_AE": 11191,
+  "verified_non_region_original_cells": 10830,
+  "region_values_semantically_verified": 361,
+  "derived_formulas_verified": 361,
+  "formula_cached_numeric_results_verified": 361,
+  "region_merged_ranges": 9,
+  "final_sheet_count": 1,
+  "all_original_values_unchanged": true,
+  "signed_gap_definition": "PSPTt (PS101) - PSCart (PS119)",
+  "prompt_language": "English",
+  "agent_trial_completed": false,
+  "sha256": {
+    "input.xlsx": "9e4571db4589b46a682bae20c10d6efc6424eddb9af82dc432d1117cc0a63b32",
+    "gold_output.xlsx": "aec202a741a109931dea006748d1d8bcf5da94ecc6e470879794ede5efc3d34a"
+  },
+  "independent_evaluator": {
+    "success": true,
+    "errors": [],
+    "data_rows": 361,
+    "original_value_cells_checked": 11191,
+    "derived_values_checked": 361,
+    "mandatory_header_merges": 13,
+    "region_groups": 9,
+    "operation_labels": [
+      "OP7",
+      "OP2"
+    ]
+  },
+  "mutations_rejected": 9,
+  "repo_audit_pending": true
+}

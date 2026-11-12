@@ -4,7 +4,7 @@
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
-**Status:** research preview. Currently four public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
+**Status:** research preview. Currently five public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
 
 ## Benchmark construction and annotation standards
 
@@ -103,3 +103,7 @@ A license for this repository's *original code* has not yet been selected; do no
 ## Science58 public example
 
 [Science / case_1_realhitbench_science58 — OP4 + OP7 + OP3](data/science/case_1_realhitbench_science58/README.md) demonstrates TNF/siRNA field decomposition, semantic header flattening, and inserted paired Ct-difference rows. It is a public, gold-disclosed example only; do not use it as held-out test data.
+
+## JTS0402-2014 transport example
+
+[Transport / DfT JTS0402 2014 — OP7 + OP2](data/transport/case_1_dft_jts0402_2014/README.md) reconstructs multi-level primary-school accessibility headers and derives signed public-transport/walking-minus-car journey-time gaps. It is a public Gold-disclosed example (not held-out test data).

@@ -1,0 +1,106 @@
+{
+  "benchmark": "Table Transformation Benchmark",
+  "benchmark_version": "2.2",
+  "case_id": "TTB_V2_2_DFT_JTS0402_2014_OP7_OP2_001",
+  "case_number": 1,
+  "case_slug": "case_1_dft_jts0402_2014",
+  "case_relative_path": "data/transport/case_1_dft_jts0402_2014",
+  "domain": "transport",
+  "category": "transport",
+  "source_family_id": "DfT_JTS0402_2014",
+  "source_id": "DfT_JTS0402_2014",
+  "source": {
+    "source_dataset": "UK Department for Transport Journey Time Statistics",
+    "source_instance": "JTS0402-2014",
+    "source_table_id": "JTS0402",
+    "source_filename": "JTS0402-2014.xlsx",
+    "source_title": "Primary school access and journey time indicators by local authority, England, 2014",
+    "source_url": "https://www.gov.uk/government/statistics/journey-time-statistics-access-2014",
+    "dataset_url": "https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts",
+    "source_type": "government_statistics",
+    "license": "Open Government Licence v3.0 (GOV.UK default, except where otherwise stated)",
+    "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "source_domain": "transport",
+    "source_sha256": "9e4571db4589b46a682bae20c10d6efc6424eddb9af82dc432d1117cc0a63b32",
+    "modifications": [
+      "Keep the 31 source fields and 361 records, with original numeric and textual values",
+      "Reconstruct a 3-level semantic transport-mode / metric-type / time-threshold header with actual cell merges",
+      "Merge consecutive identical Region labels only; preserve source local-authority records",
+      "Add a 32nd column of signed mean-minimum-travel-time gap as PSPTt (PS101) minus PSCart (PS119)",
+      "Store each gap as a same-row Excel formula with a cached numerical result",
+      "Retain source indicator IDs and codes in Excel header comments"
+    ]
+  },
+  "primary_operation": "OP7",
+  "operations": [
+    "OP7",
+    "OP2"
+  ],
+  "operation_nodes": [
+    {
+      "id": "rebuild_transport_hierarchy",
+      "operation": "OP7",
+      "subtype": "T3",
+      "target": "Three-level semantic headers and contiguous Region row grouping"
+    },
+    {
+      "id": "derive_signed_time_gap",
+      "operation": "OP2",
+      "subtype": "D1",
+      "target": "Average minimum journey time: public transport/walking minus car"
+    }
+  ],
+  "dependency_edges": [],
+  "structure_tags": [
+    "S3",
+    "S4"
+  ],
+  "input_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 368,
+    "used_columns": 31,
+    "total_data_rows": 361,
+    "column_header_depth": 2,
+    "merged_region_count": 1
+  },
+  "gold_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 367,
+    "used_columns": 32,
+    "total_data_rows": 361,
+    "original_columns": 31,
+    "derived_columns": 1,
+    "derived_numeric_cells": 361,
+    "merged_region_count": 25,
+    "column_header_depth": 3
+  },
+  "difficulty": "L3",
+  "rules": {
+    "row_order": "unchanged, 361 records",
+    "column_order": "31 original fields in source order; append derived gap",
+    "header_semantics": "each travel mode has 1 average minimum journey time, 4 origin accessibility counts, 4 destination percentage indicators",
+    "formula": "PSPTt - PSCart, minutes, same local authority",
+    "missing_value_policy": "do not impute or invent",
+    "percentage": "source stored as percentage points (94 means 94%), never convert to .94",
+    "source_traceability": "field codes and indicator IDs preserved in header comments",
+    "region_merges": "contiguous same-name Region blocks only",
+    "original_data_fidelity": "exact source values, types and text, except repeated region labels represented by merged regions",
+    "layout_equivalence": "header can be preceded by arbitrary short title rows, must retain 3 header levels"
+  },
+  "split": "example",
+  "release_role": "public_demo",
+  "dataset_status": "source_gold_prompt_independent_evaluator_and_mutation_tests_audited_no_agent_trial",
+  "evaluation": {
+    "primary_metric": "Hard Task Success",
+    "checker_version": "jts0402_op7_op2_001",
+    "numeric_tolerance_abs": 1e-09,
+    "numeric_tolerance_rel": 1e-12,
+    "prompt_mode": "discovery",
+    "scaffold": "lightweight tool-calling agent; evaluator runs outside sandbox"
+  },
+  "prompt_mode": "discovery",
+  "prompt_tracks": {
+    "discovery": "instruction.txt"
+  },
+  "composition_notes": "OP7 and OP2 both appear in the output; OP2 depends on mapping two source fields but need not depend on the header rebuild itself."
+}
