@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
 """Independent evaluator for Science58; validates facts, layout, structure and arithmetic.
 
-Allows numeric results or safely parsed arithmetic formulas using local cell refs.
+Allows numeric results or the shared safely parsed offline Excel formula subset.
 Does not execute macros, external links, Excel, or submitted Python code.
 """
 from __future__ import annotations
-import ast
 import json
 import math
 import re
 import sys
 from pathlib import Path
 from openpyxl import load_workbook
-from openpyxl.utils.cell import column_index_from_string
+
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT))
+from scripts.formula_eval import SpreadsheetFormulaEvaluator
 
 HERE=Path(__file__).resolve().parent
 HEADERS=['Set','Treatment','TNF Treatment','siRNA Target'] + [f'{g}_Expt{e}_repli{r}_Ct' for g in ('CD40','b-actin') for e in (1,2,3) for r in (1,2)]
 TARGETS=['None','Control','Runx1','Runx3','Runx1 + Runx3']
-CELLREF=re.compile(r'(?<![A-Za-z0-9_])\$?([A-Z]{1,3})\$?([1-9][0-9]*)(?![A-Za-z0-9_])')
 
 
 def decode_treatment(raw):
@@ -53,6 +54,7 @@ def expected_rows():
         state,target=decode_treatment(treat)
         # These are source facts, read independently of the published Gold.
         raw.append([sid,treat,state,target]+[float(s.cell(r,c).value) for c in range(3,15)])
+    src.close()
     expected=[]
     for i in range(0,10,2):
         neg,pos=raw[i:i+2]
@@ -62,52 +64,11 @@ def expected_rows():
     return expected
 
 
-def evaluate_cell(sheet, cell, seen=None):
-    """Safely evaluate arithmetic in a formula; only local refs and +,-,*,/, parentheses.
-    No functions, range operators, external references, calls or names.
-    """
-    if seen is None:seen=set()
-    address=cell.coordinate
-    if address in seen:raise ValueError('Cyclic formula: '+address)
-    if cell.data_type!='f':
-        if isinstance(cell.value,bool) or not isinstance(cell.value,(int,float)):
-            raise ValueError(f'Non-numeric value: {address}={cell.value!r}')
-        v=float(cell.value)
-        if not math.isfinite(v):raise ValueError('Non-finite')
-        return v
-    expr=str(cell.value)[1:]
-    if len(expr)>200 or any(c in expr for c in '!:;[]"\'{}'):
-        raise ValueError('Unsupported formula syntax: '+address)
-    references={}
-    def sub(m):
-        col, row=m.groups()
-        idx=column_index_from_string(col)
-        r=int(row)
-        if idx>16 or r>16:raise ValueError('Reference out of range')
-        key=f'cell_{len(references)}'
-        references[key]=sheet.cell(r,idx)
-        return key
-    expr=CELLREF.sub(sub,expr)
-    tree=ast.parse(expr,mode='eval')
-    def walk(node,depth=0):
-        if depth>16:raise ValueError('Deep formula')
-        if isinstance(node,ast.Expression):return walk(node.body,depth+1)
-        if isinstance(node,ast.Constant) and type(node.value) in (int,float):return float(node.value)
-        if isinstance(node,ast.Name) and node.id in references:
-            return evaluate_cell(sheet,references[node.id],seen|{address})
-        if isinstance(node,ast.UnaryOp) and isinstance(node.op,(ast.UAdd,ast.USub)):
-            n=walk(node.operand,depth+1);return n if isinstance(node.op,ast.UAdd) else -n
-        if isinstance(node,ast.BinOp) and isinstance(node.op,(ast.Add,ast.Sub,ast.Mult,ast.Div)):
-            left=walk(node.left,depth+1);right=walk(node.right,depth+1)
-            if isinstance(node.op,ast.Add):return left+right
-            if isinstance(node.op,ast.Sub):return left-right
-            if isinstance(node.op,ast.Mult):return left*right
-            if right==0:raise ValueError('Divide by zero')
-            return left/right
-        raise ValueError('Unsupported formula node: '+type(node).__name__)
-    v=walk(tree)
-    if not math.isfinite(v):raise ValueError('Non-finite result')
-    return v
+def evaluate_cell(calculator, cell):
+    value=calculator.cell(cell.coordinate)
+    if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value):
+        raise ValueError('Expected a finite numeric Excel value at '+cell.coordinate)
+    return float(value)
 
 
 def evaluate(path):
@@ -121,29 +82,43 @@ def evaluate(path):
         errors.append(f'Expected only sheet TNF Comparison; got {book.sheetnames}')
         return status
     s=book.active
-    if s.max_row!=16 or s.max_column!=16:
-        errors.append(f'Expected 16 rows including header and 16 columns, got {s.max_row}x{s.max_column}')
-    if s.merged_cells.ranges:
-        errors.append('Output must have flat, unmerged header and no merged data cells')
-    seenheaders=[s.cell(1,c).value for c in range(1,17)]
+    # Ignore styling-only cells and blank outer margins; preserve logical table shape.
+    # Sparse access avoids iterating a huge rectangular styling-only used range.
+    populated=[cell for cell in s._cells.values() if cell.value is not None]
+    if not populated:
+        errors.append('Empty output table');return status
+    top=min(cell.row for cell in populated)
+    left=min(cell.column for cell in populated)
+    bottom=max(cell.row for cell in populated)
+    right=max(cell.column for cell in populated)
+    if (bottom-top+1,right-left+1)!=(16,16):
+        errors.append('Expected one contiguous 16-by-16 content table including header')
+        return status
+    for merged in s.merged_cells.ranges:
+        intersects=(merged.min_row<=bottom and merged.max_row>=top and
+                    merged.min_col<=right and merged.max_col>=left)
+        if intersects and (merged.min_row!=merged.max_row or merged.min_col!=merged.max_col):
+            errors.append('Output table must have flat, unmerged header and data cells')
+    seenheaders=[s.cell(top,c).value for c in range(left,left+16)]
     if seenheaders!=HEADERS:
         errors.append('Header hierarchy mapping or column order incorrect')
     if errors:return status
     status['schema_success']=1
+    calculator=SpreadsheetFormulaEvaluator(s)
     expected=expected_rows()
     originalok=0;diffok=0;valid_count=0
     for offset,want in enumerate(expected):
-        r=offset+2
+        r=top+offset+1
         valid=True
         for c in range(1,5):
-            actual=s.cell(r,c).value
+            actual=s.cell(r,left+c-1).value
             if actual!=want[c-1]:
-                errors.append(f'{s.cell(r,c).coordinate}: expected {want[c-1]!r}, got {actual!r}')
+                errors.append(f'{s.cell(r,left+c-1).coordinate}: expected {want[c-1]!r}, got {actual!r}')
                 valid=False
         for c in range(5,17):
-            cell=s.cell(r,c)
+            cell=s.cell(r,left+c-1)
             try:
-                actual=evaluate_cell(s,cell)
+                actual=evaluate_cell(calculator,cell)
                 target=want[c-1]
                 status['checked_numeric_cells']+=1
                 if not math.isclose(actual,target,rel_tol=1e-12,abs_tol=1e-9):

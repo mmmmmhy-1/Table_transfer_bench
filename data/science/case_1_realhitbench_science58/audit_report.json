@@ -1,14 +1,29 @@
 {
   "case_id": "TTB_V2_2_RHB_science58_OP4_OP7_OP3_001",
   "benchmark_version": "2.2",
-  "prompt_audit": {
-    "discovery_has_explicit_difference_sign": true,
-    "discovery_defines_row_order_and_pairing": true,
-    "discovery_defines_headers_and_treatment_split": true,
-    "discovery_avoids_hardcoded_sheet_coordinates": true,
-    "discovery_leaks_no_expected_ct_or_difference_values": true,
-    "guided_separate_from_discovery": true
+  "checker_version": "science58_tnf_pair_v2_2_002",
+  "automated_prompt_checks": {
+    "guided_has_identical_discovery_business_requirements": true,
+    "discovery_contains_no_literal_source_or_difference_numeric_answers": true
   },
+  "upstream_independent_audit": {
+    "upstream_url": "https://huggingface.co/datasets/spzy/RealHiTBench/resolve/68ca8e50950dc0704c53968ff9a4a0456b585e96/html/science-table58.html",
+    "upstream_sha256": "50ca7ce82a79f92eda0532960d849554b71c81844cd4516c115d88ad7b17a333",
+    "source_ct_values_checked": 120,
+    "semantic_header_paths_checked": 12,
+    "source_identifier_cells_checked": 20,
+    "gold_numeric_values_checked": 180,
+    "canonical_numeric_values_checked": 180,
+    "max_input_absolute_error": "0",
+    "max_gold_or_canonical_absolute_error": "3.2E-15"
+  },
+  "semantic_gold_rebuild_matches": true,
+  "dependency_edges": [
+    [
+      "extract_treatment_factors",
+      "insert_paired_tnf_differences"
+    ]
+  ],
   "input_sha256": "d59b4048ef2ded53a33244037240675fa42b1069aeabba776a21122ff80cd119",
   "gold_sha256": "967f51e638a5022e059d1ef8b7998e0bd36d573c310c49d7c9586f32fdb67e90",
   "input_merged_regions": 9,
@@ -22,5 +37,5 @@
   "reference_hard_task_success": 1,
   "independent_match_errors": [],
   "numeric_tolerance_abs": 1e-09,
-  "review_note": "No model was run on this new task. Deterministic prompt/output consistency inspection and evaluator regressions were performed."
+  "review_note": "Deterministic source, Gold, prompt parity and evaluator audit; no model/API run and no independent human research review. L4 is heuristic; OP7 is parallel to the OP4 -> OP3 dependency, and source pairs are adjacent."
 }

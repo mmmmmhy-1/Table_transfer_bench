@@ -26,25 +26,54 @@
       "Extract TNF condition and siRNA target from the experiment Treatment text",
       "Flatten CD40/b-actin -> Expt1-3 -> repli1/2 -> Ct into twelve full column identifiers",
       "Preserve source Set/Treatment strings and each of the 120 numeric Ct facts while parsing numeric strings into Excel numeric type",
-      "Insert exactly one signed (+TNF minus -TNF) comparison record after each original same-target pair"
-    ]
+      "Insert exactly one signed (+TNF minus -TNF) comparison record after each original same-target pair",
+      "The supplied source-derived XLSX omits blank separator columns present in the pinned upstream HTML; all 120 Ct facts and their semantic paths are verified offline."
+    ],
+    "upstream_snapshot_url": "https://huggingface.co/datasets/spzy/RealHiTBench/resolve/68ca8e50950dc0704c53968ff9a4a0456b585e96/html/science-table58.html",
+    "upstream_revision": "68ca8e50950dc0704c53968ff9a4a0456b585e96",
+    "upstream_snapshot_sha256": "50ca7ce82a79f92eda0532960d849554b71c81844cd4516c115d88ad7b17a333",
+    "upstream_snapshot_path": "source/science-table58.html"
   },
   "primary_operation": "OP3",
-  "operations": ["OP4", "OP7", "OP3"],
+  "operations": [
+    "OP4",
+    "OP7",
+    "OP3"
+  ],
   "operation_nodes": [
-    {"id": "extract_treatment_factors", "operation": "OP4", "subtype": "F3", "target": "TNF Treatment and siRNA Target"},
-    {"id": "flatten_qpcr_column_hierarchy", "operation": "OP7", "subtype": "T2", "target": "Gene_ExptN_repliN_Ct unmerged semantic header path"},
-    {"id": "insert_paired_tnf_differences", "operation": "OP3", "subtype": "G3", "target": "One signed Ct comparison row for each matched TNF contrast"}
+    {
+      "id": "extract_treatment_factors",
+      "operation": "OP4",
+      "subtype": "F3",
+      "target": "TNF Treatment and siRNA Target"
+    },
+    {
+      "id": "flatten_qpcr_column_hierarchy",
+      "operation": "OP7",
+      "subtype": "T2",
+      "target": "Gene_ExptN_repliN_Ct unmerged semantic header path"
+    },
+    {
+      "id": "insert_paired_tnf_differences",
+      "operation": "OP3",
+      "subtype": "G3",
+      "target": "One signed Ct comparison row for each matched TNF contrast"
+    }
   ],
   "dependency_edges": [
-    ["extract_treatment_factors", "insert_paired_tnf_differences"],
-    ["flatten_qpcr_column_hierarchy", "insert_paired_tnf_differences"]
+    [
+      "extract_treatment_factors",
+      "insert_paired_tnf_differences"
+    ]
   ],
-  "structure_tags": ["S1", "S3"],
+  "structure_tags": [
+    "S1",
+    "S3"
+  ],
   "difficulty": "L4",
   "split": "example",
   "release_role": "public_demo",
-  "dataset_status": "local_gold_and_evaluator_verified_pending_independent_research_review",
+  "dataset_status": "deterministic_source_gold_prompt_and_evaluator_audited_pending_human_research_review",
   "input_table_stats": {
     "num_sheets": 1,
     "used_rows": 14,
@@ -76,13 +105,14 @@
     "difference": "Ct(+TNF, same gene, same experiment, same replicate) - Ct(-TNF, same gene, same experiment, same replicate)",
     "do_not_infer_time_sequence": "-TNF versus +TNF are experimental treatment conditions, not necessarily before/after measurements of the same biological sample",
     "no_rounding": true,
-    "formula_policy": "Correct numeric Excel cell or a safe evaluable same-sheet arithmetic formula is accepted",
-    "merge_policy": "Unmerged single-row semantic column header"
+    "formula_policy": "Numeric constants or shared safe offline same-worksheet Excel formula subset; see instruction.txt.",
+    "merge_policy": "Unmerged single-row semantic column header",
+    "layout_equivalence": "Contiguous table may have blank outer margins; styling-only cells and singleton merges are ignored."
   },
   "evaluation": {
     "primary_metric": "Hard Task Success",
-    "checker_version": "science58_tnf_pair_v2_2_001",
-    "numeric_tolerance_abs": 1e-9,
+    "checker_version": "science58_tnf_pair_v2_2_002",
+    "numeric_tolerance_abs": 1e-09,
     "numeric_tolerance_rel": 1e-12,
     "reference_gold_success": 1,
     "prompt_mode": "discovery",
@@ -96,7 +126,16 @@
   "publication_policy": "Public example with disclosed Gold, do not use as held-out test",
   "taxonomy": {
     "domain": "science",
-    "operations": ["OP4", "OP7", "OP3"],
-    "structure_tags": ["S1", "S3"]
-  }
+    "operations": [
+      "OP4",
+      "OP7",
+      "OP3"
+    ],
+    "structure_tags": [
+      "S1",
+      "S3"
+    ]
+  },
+  "composition_notes": "OP4 provides TNF state and siRNA target used to identify and label OP3 comparison records. OP7 is an independent required output transformation: flattening headers need not precede difference calculation. This case is not evidence of a fully dependent three-operation chain. Adjacent fixed source pairs also limit pairing difficulty.",
+  "difficulty_rationale": "L4 heuristic: multiple required operations with S1+S3 input; dependency depth is two, not three."
 }

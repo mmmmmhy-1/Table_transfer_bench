@@ -1,9 +1,9 @@
 name: Check isolated agent baseline
 on:
   pull_request:
-    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', '.github/workflows/agent-baseline.yml']
+    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/formula_eval.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', 'data/science/**', '.github/workflows/agent-baseline.yml']
   push:
-    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', '.github/workflows/agent-baseline.yml']
+    paths: ['benchmark/**', 'schemas/**', 'scripts/validate_annotations.py', 'scripts/formula_eval.py', 'scripts/extend_op6_schema.py', 'examples/op6_contracts.json', 'data/**/evaluate.py', 'data/**/instruction*.txt', 'data/science/**', '.github/workflows/agent-baseline.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,3 +22,5 @@ jobs:
           TTB_DOCKER_TEST: '1'
       - run: python scripts/validate_annotations.py
       - run: python scripts/check_public_cases.py
+      - run: python data/science/case_1_realhitbench_science58/verify_package.py
+      - run: python data/science/case_1_realhitbench_science58/test_case.py

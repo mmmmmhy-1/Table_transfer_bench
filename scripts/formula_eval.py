@@ -18,7 +18,7 @@ class FormulaError(ValueError):
 
 class Parser:
     def __init__(self, formula):
-        self.tokens = list(Tokenizer(formula).items)
+        self.tokens = [tok for tok in Tokenizer(formula).items if tok.type != 'WHITE-SPACE']
         self.index = 0
         if len(self.tokens) > 400:
             raise FormulaError('formula too complex')

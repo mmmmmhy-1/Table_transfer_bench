@@ -15,6 +15,7 @@ on:
       - 'schemas/**'
       - 'data/catalog.json'
       - 'data/**/metadata.json'
+      - 'data/science/**'
       - 'requirements.txt'
       - 'data/environment/case_1_realhitbench_environment21/evaluate.py'
       - 'data/business/case_1_realhitbench_business13/evaluate.py'
