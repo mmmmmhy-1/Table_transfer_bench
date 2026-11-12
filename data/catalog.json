@@ -106,6 +106,26 @@
       "path": "data/transport/case_1_dft_jts0402_2014",
       "case_number": 1,
       "case_slug": "case_1_dft_jts0402_2014"
+    },
+    {
+      "case_id": "TTB_V2_2_RHB_environment43_OP1_OP7_OP3_001",
+      "domain": "science",
+      "source_dataset": "RealHiTBench",
+      "source_table_id": "environment43",
+      "source_family_id": "RealHiTBench_environment43",
+      "operations": [
+        "OP1",
+        "OP7",
+        "OP3"
+      ],
+      "structure_tags": [
+        "S0"
+      ],
+      "split": "example",
+      "release_role": "public_demo",
+      "path": "data/science/case_2_realhitbench_environment43",
+      "case_number": 2,
+      "case_slug": "case_2_realhitbench_environment43"
     }
   ]
 }

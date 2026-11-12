@@ -4,7 +4,7 @@
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
-**Status:** research preview. Currently five public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
+**Status:** research preview. Currently six public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
 
 ## Benchmark construction and annotation standards
 
@@ -107,3 +107,7 @@ A license for this repository's *original code* has not yet been selected; do no
 ## JTS0402-2014 transport example
 
 [Transport / DfT JTS0402 2014 — OP7 + OP2](data/transport/case_1_dft_jts0402_2014/README.md) reconstructs multi-level primary-school accessibility headers and derives signed public-transport/walking-minus-car journey-time gaps. It is a public Gold-disclosed example (not held-out test data).
+
+## Environment43 animal-treatment public example
+
+[Science / RealHiTBench environment43 — OP1 + OP7 + OP3](data/science/case_2_realhitbench_environment43/README.md) pivots animal-level treatment records into grouped two-level headers and regenerates Mean, sample SD and SEM from individual observations. It is an openly disclosed reference example, not a held-out test.

@@ -13,3 +13,5 @@ The canonical dataset lives under [data/](../data/README.md), grouped by **domai
 - [Science / case_1_realhitbench_science58 — OP4 + OP7 + OP3](../data/science/case_1_realhitbench_science58/README.md) — qPCR Ct paired TNF contrasts (public demo)
 
 - [Transport / case_1_dft_jts0402_2014 — OP7 + OP2](../data/transport/case_1_dft_jts0402_2014/README.md) — UK DfT JTS0402 primary-school access (public demo)
+
+- [Science / case_2_realhitbench_environment43 — OP1 + OP7 + OP3](../data/science/case_2_realhitbench_environment43/README.md) — RealHiTBench environment43, independent treatment cohorts (public demo)
