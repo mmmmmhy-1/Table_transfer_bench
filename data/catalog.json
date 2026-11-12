@@ -109,7 +109,7 @@
     },
     {
       "case_id": "TTB_V2_2_RHB_environment43_OP1_OP7_OP3_001",
-      "domain": "science",
+      "domain": "environment",
       "source_dataset": "RealHiTBench",
       "source_table_id": "environment43",
       "source_family_id": "RealHiTBench_environment43",
@@ -123,7 +123,7 @@
       ],
       "split": "example",
       "release_role": "public_demo",
-      "path": "data/science/case_2_realhitbench_environment43",
+      "path": "data/environment/case_2_realhitbench_environment43",
       "case_number": 2,
       "case_slug": "case_2_realhitbench_environment43"
     }

@@ -110,4 +110,4 @@ A license for this repository's *original code* has not yet been selected; do no
 
 ## Environment43 animal-treatment public example
 
-[Science / RealHiTBench environment43 — OP1 + OP7 + OP3](data/science/case_2_realhitbench_environment43/README.md) pivots animal-level treatment records into grouped two-level headers and regenerates Mean, sample SD and SEM from individual observations. It is an openly disclosed reference example, not a held-out test.
+[Environment / RealHiTBench environment43 — OP1 + OP7 + OP3](data/environment/case_2_realhitbench_environment43/README.md) pivots animal-level treatment records into grouped two-level headers and regenerates Mean, sample SD and SEM from individual observations. It is an openly disclosed reference example, not a held-out test.

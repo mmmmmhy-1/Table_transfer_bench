@@ -4,9 +4,9 @@
   "case_id": "TTB_V2_2_RHB_environment43_OP1_OP7_OP3_001",
   "case_number": 2,
   "case_slug": "case_2_realhitbench_environment43",
-  "case_relative_path": "data/science/case_2_realhitbench_environment43",
-  "domain": "science",
-  "category": "science",
+  "case_relative_path": "data/environment/case_2_realhitbench_environment43",
+  "domain": "environment",
+  "category": "environment",
   "source_family_id": "RealHiTBench_environment43",
   "source_id": "RealHiTBench_environment43",
   "source": {
@@ -32,36 +32,116 @@
     ]
   },
   "primary_operation": "OP1",
-  "operations": ["OP1", "OP7", "OP3"],
-  "operation_nodes": [
-    {"id": "pivot_treatment", "operation": "OP1", "subtype": "R2", "target": "Wide cohort records by Genotype + Group; Vehicle and Fluoxetine child columns"},
-    {"id": "construct_hierarchy", "operation": "OP7", "subtype": "T3", "target": "Two-level merged treatment headers and genotype/group row-section merges"},
-    {"id": "generate_statistics", "operation": "OP3", "subtype": "G3", "target": "Three computed statistic rows for each observed genotype/group"}
+  "operations": [
+    "OP1",
+    "OP7",
+    "OP3"
   ],
-  "dependency_edges": [["pivot_treatment", "generate_statistics"]],
-  "structure_tags": ["S0"],
-  "output_structure_tags": ["S1", "S2", "S3"],
+  "operation_nodes": [
+    {
+      "id": "pivot_treatment",
+      "operation": "OP1",
+      "subtype": "R2",
+      "target": "Wide cohort records by Genotype + Group; Vehicle and Fluoxetine child columns"
+    },
+    {
+      "id": "construct_hierarchy",
+      "operation": "OP7",
+      "subtype": "T3",
+      "target": "Two-level merged treatment headers and genotype/group row-section merges"
+    },
+    {
+      "id": "generate_statistics",
+      "operation": "OP3",
+      "subtype": "G3",
+      "target": "Three computed statistic rows for each observed genotype/group"
+    }
+  ],
+  "dependency_edges": [
+    [
+      "pivot_treatment",
+      "generate_statistics"
+    ]
+  ],
+  "structure_tags": [
+    "S0"
+  ],
+  "output_structure_tags": [
+    "S1",
+    "S2",
+    "S3"
+  ],
   "difficulty": "L3",
   "split": "example",
   "release_role": "public_demo",
   "dataset_status": "public_demo_gold_and_evaluator_verified_locally",
   "prompt_mode": "discovery",
-  "prompt_tracks": {"discovery": "instruction.txt"},
-  "input_table_stats": {"num_sheets": 1, "used_rows": 68, "total_data_rows": 67, "used_columns": 5, "merged_region_count": 0, "experimental_conditions": 6},
-  "gold_table_stats": {"num_sheets": 1, "used_rows": 48, "used_columns": 7, "total_data_rows": 44, "individual_detail_rows": 35, "generated_statistic_rows": 9, "generated_statistic_numeric_cells": 18, "merged_region_count": 13},
-  "header_merges_gold": ["A3:A4", "B3:B4", "C3:C4", "D3:E3", "F3:G3"],
+  "prompt_tracks": {
+    "discovery": "instruction.txt"
+  },
+  "input_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 68,
+    "total_data_rows": 67,
+    "used_columns": 5,
+    "merged_region_count": 0,
+    "experimental_conditions": 6
+  },
+  "gold_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 48,
+    "used_columns": 7,
+    "total_data_rows": 44,
+    "individual_detail_rows": 35,
+    "generated_statistic_rows": 9,
+    "generated_statistic_numeric_cells": 18,
+    "merged_region_count": 13
+  },
+  "header_merges_gold": [
+    "A3:A4",
+    "B3:B4",
+    "C3:C4",
+    "D3:E3",
+    "F3:G3"
+  ],
   "rules": {
-    "group_order": [["WT", "Control"], ["WT", "Stress"], ["FGF2KO", "Stress"]],
-    "treatment_order": ["Vehicle", "Fluoxetine"],
+    "group_order": [
+      [
+        "WT",
+        "Control"
+      ],
+      [
+        "WT",
+        "Stress"
+      ],
+      [
+        "FGF2KO",
+        "Stress"
+      ]
+    ],
+    "treatment_order": [
+      "Vehicle",
+      "Fluoxetine"
+    ],
     "group_local_alignment": "Position only; independent animals are not biologically paired",
     "incomplete_group_policy": "No FGF2KO Control group; do not synthesize any missing combination",
     "source_record_policy": "Keep all 67 animal IDs and numeric index values attached to their original factor labels",
     "sample_sd": "Use unbiased sample standard deviation with N-1 denominator (STDEV.S)",
     "sem": "Sample SD / SQRT(N)",
-    "summary_row_order": ["Mean", "Sample SD", "SEM"],
+    "summary_row_order": [
+      "Mean",
+      "Sample SD",
+      "SEM"
+    ],
     "formula_cache_policy": "Gold has cached values; evaluator also accepts known, exact, safe uncached formulas",
     "rounding": "No rounding of underlying numeric values"
   },
-  "evaluation": {"primary_metric": "Hard Task Success", "checker_version": "environment43_op1_op7_op3_v1", "numeric_tolerance_abs": 1e-9, "reference_gold_success": 1, "scaffold": "Agent receives input.xlsx plus instruction.txt only"},
+  "evaluation": {
+    "primary_metric": "Hard Task Success",
+    "checker_version": "environment43_op1_op7_op3_v1",
+    "numeric_tolerance_abs": 1e-9,
+    "reference_gold_success": 1,
+    "scaffold": "Agent receives input.xlsx plus instruction.txt only"
+  },
   "publication_policy": "Public example with Gold disclosed; do not include in held-out test"
 }

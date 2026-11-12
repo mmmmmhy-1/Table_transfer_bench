@@ -2,7 +2,7 @@
 
 **Case ID:** `TTB_V2_2_RHB_environment43_OP1_OP7_OP3_001`
 
-**Source:** RealHiTBench (original table `environment-table43.html`, table identifier `environment43`), [official repository](https://github.com/cspzyy/RealHiTBench), [dataset](https://huggingface.co/datasets/spzy/RealHiTBench). Source table is categorized as *environment* in RealHiTBench; this project's domain is **science**, because the observations are an animal genotype/treatment experiment. Source dataset license: **CC BY-NC 4.0**; attribution retained.
+**Source:** RealHiTBench (original table `environment-table43.html`, table identifier `environment43`), [official repository](https://github.com/cspzyy/RealHiTBench), [dataset](https://huggingface.co/datasets/spzy/RealHiTBench). Source table is categorized as *environment* in RealHiTBench; this project's domain is **environment**, following the original RealHiTBench source category and the benchmark's chosen domain classification. The experiment concerns animal genotype and treatment. Source dataset license: **CC BY-NC 4.0**; attribution retained.
 
 **Task:** Convert 67 animal-level records into a wide, two-level treatment header format, retaining every ID and measurement. For each of the three observed genotype/group combinations, compute three new statistic rows (Mean, sample SD, SEM), separately for Vehicle and Fluoxetine.
 
@@ -20,7 +20,7 @@
 Check the provided Gold:
 
 ```bash
-python data/science/case_2_realhitbench_environment43/evaluate.py data/science/case_2_realhitbench_environment43/gold_output.xlsx
+python data/environment/case_2_realhitbench_environment43/evaluate.py data/environment/case_2_realhitbench_environment43/gold_output.xlsx
 ```
 
 For the main benchmark, give an agent **only `input.xlsx` and `instruction.txt`**; withhold Gold and evaluation scripts. This is an openly released *public demo* and **not** a held-out test instance.

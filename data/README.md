@@ -45,3 +45,5 @@ The current RealHiTBench-derived example is subject to **CC BY-NC 4.0**. Licensi
 - Science public example: `data/science/case_1_realhitbench_science58/` (RealHiTBench science58, OP4+OP7+OP3; source family isolated).
 
 - Transport public example: `data/transport/case_1_dft_jts0402_2014/` (DfT JTS0402, OP7+OP2, Open Government Licence).
+
+- Environment public example: `data/environment/case_2_realhitbench_environment43/` (RealHiTBench environment43, OP1+OP7+OP3, public demo).
