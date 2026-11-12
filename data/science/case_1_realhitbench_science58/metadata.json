@@ -1,0 +1,102 @@
+{
+  "benchmark": "Table Transformation Benchmark",
+  "benchmark_version": "2.2",
+  "case_id": "TTB_V2_2_RHB_science58_OP4_OP7_OP3_001",
+  "case_number": 1,
+  "case_slug": "case_1_realhitbench_science58",
+  "case_relative_path": "data/science/case_1_realhitbench_science58",
+  "domain": "science",
+  "category": "science",
+  "source_family_id": "RealHiTBench_science58",
+  "source_id": "RealHiTBench_science58",
+  "source": {
+    "source_dataset": "RealHiTBench",
+    "source_instance": "science58",
+    "source_table_id": "science58",
+    "source_filename": "science-table58.html",
+    "source_title": "qPCR Ct measurements for CD40 and b-actin under siRNA/TNF treatment groups",
+    "source_url": "https://github.com/cspzyy/RealHiTBench",
+    "dataset_url": "https://huggingface.co/datasets/spzy/RealHiTBench",
+    "source_type": "real_benchmark_derived",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "source_domain": "science",
+    "modifications": [
+      "Use the user-supplied source-derived Science58 XLSX as unchanged input (source contains 9 merged ranges)",
+      "Extract TNF condition and siRNA target from the experiment Treatment text",
+      "Flatten CD40/b-actin -> Expt1-3 -> repli1/2 -> Ct into twelve full column identifiers",
+      "Preserve source Set/Treatment strings and each of the 120 numeric Ct facts while parsing numeric strings into Excel numeric type",
+      "Insert exactly one signed (+TNF minus -TNF) comparison record after each original same-target pair"
+    ]
+  },
+  "primary_operation": "OP3",
+  "operations": ["OP4", "OP7", "OP3"],
+  "operation_nodes": [
+    {"id": "extract_treatment_factors", "operation": "OP4", "subtype": "F3", "target": "TNF Treatment and siRNA Target"},
+    {"id": "flatten_qpcr_column_hierarchy", "operation": "OP7", "subtype": "T2", "target": "Gene_ExptN_repliN_Ct unmerged semantic header path"},
+    {"id": "insert_paired_tnf_differences", "operation": "OP3", "subtype": "G3", "target": "One signed Ct comparison row for each matched TNF contrast"}
+  ],
+  "dependency_edges": [
+    ["extract_treatment_factors", "insert_paired_tnf_differences"],
+    ["flatten_qpcr_column_hierarchy", "insert_paired_tnf_differences"]
+  ],
+  "structure_tags": ["S1", "S3"],
+  "difficulty": "L4",
+  "split": "example",
+  "release_role": "public_demo",
+  "dataset_status": "local_gold_and_evaluator_verified_pending_independent_research_review",
+  "input_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 14,
+    "total_data_rows": 10,
+    "used_columns": 14,
+    "max_data_columns": 14,
+    "merged_region_count": 9,
+    "measurement_columns": 12,
+    "source_ct_measurements": 120,
+    "column_header_depth": 4
+  },
+  "gold_table_stats": {
+    "num_sheets": 1,
+    "used_rows": 16,
+    "total_data_rows": 15,
+    "original_rows": 10,
+    "generated_rows": 5,
+    "used_columns": 16,
+    "measurement_columns": 12,
+    "difference_numeric_cells": 60,
+    "merged_region_count": 0
+  },
+  "rules": {
+    "sheet_name": "TNF Comparison",
+    "column_order": "Set, Treatment, TNF Treatment, siRNA Target, CD40 Expt1..3 repli1..2 Ct, b-actin Expt1..3 repli1..2 Ct",
+    "treatment_parsing": "TNF +/- applies only to final TNF suffix; Runx1+3 is a compound siRNA label; whitespace variation does not change meaning",
+    "source_record_policy": "Keep all original Set and Treatment text and preserve all Ct measurements and their original precision",
+    "row_generation_policy": "Keep (-TNF, +TNF, difference) contiguous for each shared siRNA target; preserve source pair order",
+    "difference": "Ct(+TNF, same gene, same experiment, same replicate) - Ct(-TNF, same gene, same experiment, same replicate)",
+    "do_not_infer_time_sequence": "-TNF versus +TNF are experimental treatment conditions, not necessarily before/after measurements of the same biological sample",
+    "no_rounding": true,
+    "formula_policy": "Correct numeric Excel cell or a safe evaluable same-sheet arithmetic formula is accepted",
+    "merge_policy": "Unmerged single-row semantic column header"
+  },
+  "evaluation": {
+    "primary_metric": "Hard Task Success",
+    "checker_version": "science58_tnf_pair_v2_2_001",
+    "numeric_tolerance_abs": 1e-9,
+    "numeric_tolerance_rel": 1e-12,
+    "reference_gold_success": 1,
+    "prompt_mode": "discovery",
+    "scaffold": "Independent lightweight tool-calling Agent; evaluator runs outside sandbox"
+  },
+  "prompt_mode": "discovery",
+  "prompt_tracks": {
+    "discovery": "instruction.txt",
+    "guided": "instruction_guided.txt"
+  },
+  "publication_policy": "Public example with disclosed Gold, do not use as held-out test",
+  "taxonomy": {
+    "domain": "science",
+    "operations": ["OP4", "OP7", "OP3"],
+    "structure_tags": ["S1", "S3"]
+  }
+}

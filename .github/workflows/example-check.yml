@@ -45,6 +45,10 @@ jobs:
         run: python data/business/case_1_realhitbench_business13/evaluate.py data/business/case_1_realhitbench_business13/gold_output.xlsx
       - name: Verify labor example
         run: python data/labor/case_1_realhitbench_labor43/evaluate.py data/labor/case_1_realhitbench_labor43/gold_output.xlsx
+      - name: Verify Science58 source, gold and numeric invariants
+        run: python data/science/case_1_realhitbench_science58/verify_package.py
+      - name: Regression checks for Science58 evaluator
+        run: python data/science/case_1_realhitbench_science58/test_case.py
       - name: Regression checks for public case evaluators
         run: python scripts/check_public_cases.py
       - name: Commit generated XLSX artifacts if changed

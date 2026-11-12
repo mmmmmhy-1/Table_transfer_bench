@@ -1,0 +1,7 @@
+Guided diagnostic ONLY; run instead of instruction.txt, not together.
+
+The input workbook uses A=Set, B=Treatment, with CD40 in C:H and b-actin in I:N. Row 1 identifies the gene, row 2 has Expt1 / Expt2 / Expt3 across pairs, row 3 has repli1 / repli2, and row 4 has ct. The data begin after this header block. This explicit coordinate guidance is supplied for a separate structure-oracle diagnostic and is NOT a hint given to the main Discovery benchmark.
+
+Create one worksheet "TNF Comparison" with columns Set | Treatment | TNF Treatment | siRNA Target | then 12 Ct columns in C:N source order, named as Gene_ExptN_repliN_Ct. Preserve original Treatment strings. Extract TNF Treatment as No/Yes by final -TNF/+TNF, and siRNA Target as None, Control, Runx1, Runx3, or Runx1 + Runx3, treating Runx1+3 as the dual target. Preserve original Ct precision, converting numeric strings to numeric Excel cells.
+
+For each adjacent matching siRNA pair, keep its negative-TNF Set and positive-TNF Set in original order, then immediately insert one difference row: Set="Diff SetX vs SetY"; Treatment="+TNF minus -TNF"; TNF Treatment="Difference"; siRNA Target=the pair's target; every Ct value is positive-TNF Ct minus negative-TNF Ct at exactly the same gene / experiment / replicate. Do not average, change signs, or round. No extra rows, columns or sheets. Save submission.xlsx.

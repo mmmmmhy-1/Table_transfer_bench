@@ -1,0 +1,15 @@
+Convert the supplied qPCR science workbook into a single-sheet TNF paired-comparison Excel report, saved as submission.xlsx.
+
+The first two fields identify the experimental Set and its original Treatment text. The source has hierarchically merged column headers: Gene (CD40 / b-actin) -> Experiment (Expt1 / Expt2 / Expt3) -> replicate (repli1 / repli2) -> Ct measurement. Any separator-only spaces or blank columns have no scientific measurement meaning. Inspect the input to recover the actual hierarchy and values.
+
+Output a single worksheet named "TNF Comparison". Flatten the hierarchical column headers to one unmerged row, with exactly these field groups in order:
+- Set, Treatment, TNF Treatment, siRNA Target;
+- all CD40 Ct measurements ordered by Expt1, Expt2, Expt3, each repli1 then repli2;
+- all b-actin Ct measurements in the same experiment and replicate order.
+Use the unambiguous column naming pattern "Gene_ExptN_repliN_Ct" (for instance, CD40_Expt1_repli1_Ct and b-actin_Expt1_repli1_Ct). Do not collapse, average, swap, or round the original measurements. Keep the original Treatment text unchanged.
+
+Extract two fields from each original Treatment: "TNF Treatment" = "Yes" when it ends with + TNF, otherwise "No" when it ends with - TNF; and "siRNA Target" = one of "None", "Control", "Runx1", "Runx3", "Runx1 + Runx3" based on the treatment text. For this source, the spelling "Runx1+3" (with optional spaces) denotes the joint Runx1 + Runx3 target, not an additional TNF operator. A minus sign before "siRNA" indicates no siRNA treatment. Treat variations in spacing as equivalent. The output Ct measurements must be numeric Excel cells; source text containing a numeric Ct should be parsed without rounding.
+
+Keep every original Set as a distinct data row in its original order. Each pair having the same siRNA Target consists of its -TNF Set followed by its +TNF Set. Immediately following each such pair, insert one comparison row, with all 12 Ct measurement columns equal to the matching +TNF Ct minus -TNF Ct for the SAME gene, experiment and replicate. This is a signed raw Ct difference, not a CD40-versus-b-actin Delta Ct, not a mean, and not an absolute difference. Do not round intermediate or final calculation results. Numeric Excel formulas or numerically equivalent values are accepted.
+
+For each new comparison row, set "Set" to "Diff SetX vs SetY" with X for the -TNF Set and Y for the +TNF Set; set "Treatment" to "+TNF minus -TNF"; set "TNF Treatment" to "Difference" and "siRNA Target" to the shared target name. Keep all original source facts, generate no unrelated rows or columns, and do not include extra worksheets. Save the final workbook as submission.xlsx.

@@ -65,6 +65,27 @@
       "path": "data/business/case_1_realhitbench_business13",
       "case_number": 1,
       "case_slug": "case_1_realhitbench_business13"
+    },
+    {
+      "case_id": "TTB_V2_2_RHB_science58_OP4_OP7_OP3_001",
+      "domain": "science",
+      "source_dataset": "RealHiTBench",
+      "source_table_id": "science58",
+      "source_family_id": "RealHiTBench_science58",
+      "operations": [
+        "OP4",
+        "OP7",
+        "OP3"
+      ],
+      "structure_tags": [
+        "S1",
+        "S3"
+      ],
+      "split": "example",
+      "release_role": "public_demo",
+      "path": "data/science/case_1_realhitbench_science58",
+      "case_number": 1,
+      "case_slug": "case_1_realhitbench_science58"
     }
   ]
 }

@@ -4,7 +4,7 @@
 
 This repository develops a benchmark for **instruction-driven XLSX transformations by tool-using LLM agents**. Agents inspect a workbook and a natural-language instruction, and deliver a completed workbook for deterministic evaluation.
 
-**Status:** research preview. Currently three public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
+**Status:** research preview. Currently four public demonstration/review cases are being maintained; this is **not** a full released benchmark or a hidden test set.
 
 ## Benchmark construction and annotation standards
 
@@ -99,3 +99,7 @@ The completed project aims to add independent real-data source families, atomic 
 The public demonstration is derived from [RealHiTBench](https://github.com/cspzyy/RealHiTBench), instance **environment21**, source table *Table 5 Scientific procedures by species of animal and level of anaesthesia*. RealHiTBench's official README identifies its **data license as [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)**; derivative data therefore carry non-commercial-use conditions. See the example's `metadata.json` for source provenance and modifications. Reference: Wu et al., [RealHiTBench, arXiv:2506.13405](https://arxiv.org/abs/2506.13405).
 
 A license for this repository's *original code* has not yet been selected; do not assume that source dataset licensing grants blanket commercial-use permission.
+
+## Science58 public example
+
+[Science / case_1_realhitbench_science58 — OP4 + OP7 + OP3](data/science/case_1_realhitbench_science58/README.md) demonstrates TNF/siRNA field decomposition, semantic header flattening, and inserted paired Ct-difference rows. It is a public, gold-disclosed example only; do not use it as held-out test data.
