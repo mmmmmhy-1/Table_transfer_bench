@@ -4,7 +4,8 @@
 
 - [V2.2 Benchmark Construction Standard — 中文](benchmark_standard_v2.2_zh.md): aims, seven operations, independent structural/scale dimensions, composition, quality, evaluation, split, baselines.
 - [V2.2 Semantic Operation Definitions / Boundary Decision Rules — 中文](operation_semantics_v2.2_zh.md): record-grain criterion, five OP ambiguity resolutions, invariants, OP6 subgroup metrics, OP7 semantic threshold, and DAG review.
-- [V2.2 Annotation and Construction SOP — 中文](annotation_guidelines_v2.2_zh.md): case-by-case labeling procedure, boundary decisions, metadata fields, review checklists and rejection rules.
+
+- [V2.2 新案例组合诊断与中间 Gold 增补](composition_diagnostics_v2.2_zh.md): 依赖类型、语义 DAG、中间验证、诊断适用性、双轨提示词及 Core/Diagnostic 的边界。
 - [Agentic task instruction authoring / Discovery–Guided policy — 中文](instruction_authoring_v2.2_zh.md): leakage checks, necessary business constraints, prompt/Gold/Evaluator alignment, and public-case examples.
 - [Metadata JSON Schema](../schemas/case_metadata.schema.json): machine-readable validation contract for each case.
 - [OP6 table integration and decomposition — 中文](op6_table_integration_v2.2_zh.md): joins, row consolidation, row/column splitting, coverage and reconstruction checks; keeps OP7 cell/hierarchy transformations separate.
