@@ -112,6 +112,18 @@ Metadata 结构校验不代表已经验证输入事实或产出正确；整表�
 - 特别复核 Labor43 的 OP1→计数 OP2：如果计数可直接由原始员工记录确定，该边可能只是参考执行顺序，需单独审计；本次不修改案例 Metadata。
 - 如果一个操作组合不能证明真实数据依赖，应退回审核，不强行归为组合测试。
 
+### 3.4 新案例组合诊断的三项审核（必做）
+
+以下是**新案例人工验收要求**，与原有 OP1–OP7 和 `operation_nodes` / `dependency_edges` 并存；详细规范与 JSON 示例参见 [V2.2 组合诊断增补](composition_diagnostics_v2.2_zh.md)。
+
+1. **依赖类型**：记录 `data_dependency`、`ordering_only`、`parallel`、`mixed`（单 OP 用 `single`）。只将**真实业务语义上的数据依赖**写入 `dependency_edges`；每条边说明其上下游节点 ID、前序新增的事实/字段/结构，以及下游为何依赖它。排序展示要求或参考脚本顺序不得伪装成 DAG。
+2. **中间状态可验证性**：审查是否能定义工具无关、业务上有意义的中间语义状态和独立检查规则。可行时记录节点、必要不变量、待核验内容；对诊断案例，在构建最终 Gold 时尽量保存 `diagnostics/intermediate_<node_id>.xlsx`。不强制每一步或每条核心任务保存 Excel，中间文件不得交给主轨 Agent。
+3. **组合诊断适用性**：判断能否保持业务目标不变，构造“原始输入→单操作”“正确中间状态→后续操作”“原始输入→完整组合”对照。若无法合理拆分或无法验证中间语义，应如实记录原因，仍可保留为 Core Benchmark。
+
+**双轨 Prompt 审核**：新案例必须有英文 Discovery `instruction.txt`。复杂结构具输入定位诊断价值时同步写英文 `instruction_guided.txt`，只增加输入表头/合并范围/数据区域信息，不能增加 Gold 数值、参考代码、输出要求或执行步骤。两版相同输入/业务契约/最终评测器，分别计分；无 Guided 的案例备注原因。参见 [双轨指令规范](instruction_authoring_v2.2_zh.md)。
+
+**Core ≠ Diagnostic**：无法平坦化复杂表格，或不能保存中间 XLSX，不是拒收理由；只要最终输出具有确定的业务语义、Gold 和验证器可靠，就有真实端到端评测价值。不能用非受控的不同真实表成绩宣称某个结构因素造成性能下降。
+
 ## 四、Metadata 的必填、推荐与约束
 
 **必填字段**（Schema 强制）：`case_id`、`benchmark_version`、`domain`、`source_family_id`、`source`、`operations`、`structure_tags`、`split`、`case_relative_path`。
