@@ -3,6 +3,7 @@
 **Current specification: Table Transformation Benchmark V2.2 (Agent-Oriented).** These documents describe the proposed and adopted **construction and annotation requirements**, not a claim that the target dataset has already been collected.
 
 - [V2.2 Benchmark Construction Standard — 中文](benchmark_standard_v2.2_zh.md): aims, seven operations, independent structural/scale dimensions, composition, quality, evaluation, split, baselines.
+- [V2.2 Semantic Operation Definitions / Boundary Decision Rules — 中文](operation_semantics_v2.2_zh.md): record-grain criterion, five OP ambiguity resolutions, invariants, OP6 subgroup metrics, OP7 semantic threshold, and DAG review.
 - [V2.2 Annotation and Construction SOP — 中文](annotation_guidelines_v2.2_zh.md): case-by-case labeling procedure, boundary decisions, metadata fields, review checklists and rejection rules.
 - [Agentic task instruction authoring / Discovery–Guided policy — 中文](instruction_authoring_v2.2_zh.md): leakage checks, necessary business constraints, prompt/Gold/Evaluator alignment, and public-case examples.
 - [Metadata JSON Schema](../schemas/case_metadata.schema.json): machine-readable validation contract for each case.

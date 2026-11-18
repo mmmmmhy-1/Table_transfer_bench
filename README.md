@@ -11,6 +11,7 @@ This repository develops a benchmark for **instruction-driven XLSX transformatio
 The project follows the established **V2.2 Agent-Oriented specification**:
 
 - [Complete V2.2 Construction Standard (中文)](docs/benchmark_standard_v2.2_zh.md)
+- [V2.2 Semantic Operation Definitions & Boundary Decision Rules (中文)](docs/operation_semantics_v2.2_zh.md)
 - [V2.2 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.2_zh.md)
 - [Agentic Discovery/Guided 指令编写与审核规范](docs/instruction_authoring_v2.2_zh.md)
 - [Machine-readable Metadata JSON Schema](schemas/case_metadata.schema.json)
@@ -38,6 +39,8 @@ python scripts/validate_annotations.py
 | OP5 | Field Normalization | Normalize types, formats, units, and categories |
 | OP6 | Table Integration & Decomposition | Key-based joins, row-wise consolidation, and rule-based row/column table splitting |
 | OP7 | Structural Transformation | Semantics-preserving merge/group hierarchy and multi-level header transformation |
+
+**Semantic interpretation (2026-11-19):** OP1 preserves existing facts while changing dimension/grain; OP2 derives attributes at existing record grain; OP3 generates new logical records; OP4 decomposes compound fields; OP5 normalizes representations of the same attribute; OP6 changes relations among logical tables; OP7 transforms semantic hierarchy. Operation IDs and existing case artifacts are unchanged. See the [five boundary decisions](docs/operation_semantics_v2.2_zh.md) for counterexamples and evaluator invariants.
 
 We annotate table structure separately (**S0** flat, **S1** multi-level column headers, **S2** hierarchical row headers, **S3** merged cells, **S4** irregular layouts). Scale is measured continuously, not assigned fixed Small/Medium bins. Compositions and their dependencies are explicitly recorded.
 
