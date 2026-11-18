@@ -12,7 +12,8 @@ The project follows the established **V2.2 Agent-Oriented specification**:
 
 - [Complete V2.2 Construction Standard (中文)](docs/benchmark_standard_v2.2_zh.md)
 - [V2.2 Semantic Operation Definitions & Boundary Decision Rules (中文)](docs/operation_semantics_v2.2_zh.md)
-- [V2.2 Case Construction & Annotation SOP (中文)](docs/annotation_guidelines_v2.2_zh.md)
+
+- [V2.2 Composition Diagnostics / Intermediate Gold Case Construction (中文)](docs/composition_diagnostics_v2.2_zh.md)
 - [Agentic Discovery/Guided 指令编写与审核规范](docs/instruction_authoring_v2.2_zh.md)
 - [Machine-readable Metadata JSON Schema](schemas/case_metadata.schema.json)
 - [Documentation index](docs/README.md)
